@@ -26,7 +26,7 @@
     .dashboard-header{
         width: 100%;
         padding: .7rem;
-        background-color: rgb(48, 47, 47);
+        background-color: var(-gray-dark);
         border-radius: 6px;
     }
     .header-title{

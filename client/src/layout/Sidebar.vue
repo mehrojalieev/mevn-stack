@@ -64,7 +64,8 @@ const menu = role === "admin" ? adminMenu : userMenu;
     width: 100%;
     max-width: 250px;
     height: 100vh;
-    background-color: #18181B;
+    background-color: var(--gray-dark);
+    padding: 0 .8rem;
 }
 
 .sidebar__lists-menu {
@@ -95,6 +96,7 @@ const menu = role === "admin" ? adminMenu : userMenu;
         padding: .8rem 1.6rem;
         @include f-style(16px, 400, var(--light-color));
         letter-spacing: 1px;
+        border-radius: 6px;
 
         &:hover {
             background-color: #343438;
