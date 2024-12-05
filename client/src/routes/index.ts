@@ -17,6 +17,11 @@ const routes = createRouter({
                             path: 'products',
                             name: "Products",
                             component: () => import('../views/admin-dashboard/admin-routes/AllProducts.vue')
+                        },
+                        {
+                            path: 'users',
+                            name: "Users",
+                            component: () => import('../views/admin-dashboard/admin-routes/AllUsers.vue')
                         }
                     ]
                 },

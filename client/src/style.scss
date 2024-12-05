@@ -10,6 +10,8 @@
   --light-color: #ffff;
   --dark-color: #000;
   --primary-success: #2B9670;
+  --gray-dark: #18181B;
+  --gray-dark-hover: #4a4a4d44;
 }
 
 a{
@@ -18,4 +20,16 @@ a{
 
 li{
   list-style: none;
+}
+
+.router-link-exact-active{
+  background-color: var(--primary-success);
+  color: var(--light-color);
+  i{
+    color: var(--light-color) !important;
+  }
+  &:hover{
+    background-color: #2b9671af !important;
+    color: var(--light-color);
+  }
 }

@@ -6,7 +6,10 @@ import { RouterView } from 'vue-router';
 
 <template>
     <div class="dashboard">
+        
         <RouterView/>
     </div>
   </template>
+  
+
   
