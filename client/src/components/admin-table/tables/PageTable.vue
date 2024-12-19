@@ -13,7 +13,11 @@ import ProductTr from './ProductTr.vue';
     })
 
 
-    console.log(props.products);
+    const statusList = ["INSTOCK",  "OUTOFSTOCK", "LIMITED", "COMINGSOON", "DISCONTINUED"];
+
+function getRandomStatus() {
+    return statusList[Math.floor(Math.random() * statusList.length)];
+}
     
 </script>
 
@@ -38,6 +42,7 @@ import ProductTr from './ProductTr.vue';
             </thead>
             <tbody>
                 <ProductTr
+                :status="getRandomStatus()"
                     :product="product as any"
                     v-for="(product, index) in props.products"
                     :key="index"
