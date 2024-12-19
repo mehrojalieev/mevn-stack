@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { computed } from 'vue';
+
 const props = defineProps({
   product: {
     type: Object as () => {
@@ -13,9 +15,31 @@ const props = defineProps({
     },
     required: true,
   },
+  status: {
+        type: String,
+        required: true,
+    },
 });
 
-console.log(props.product);
+
+
+
+const statusClass = computed(() => {
+    switch (props.status) {
+        case "INSTOCK":
+            return "text-success";
+        case "OUTOFSTOCK":
+            return "text-danger";
+        case "LIMITED":
+            return "text-warning";
+        case "COMINGSOON":
+            return "text-info";
+        case "DISCONTINUED":
+            return "text-muted";
+        default:
+            return "";
+    }
+});
 
 
 const handleEdit = (product: any) => {
@@ -37,7 +61,7 @@ const handleDelete = (product: any) => {
     <td>{{ product.price }}</td>
     <td>{{ product.stock }}</td>
     <td>{{ product.category }}</td>
-    <td>{{ product.status }}</td>
+    <td :class="statusClass">{{ status }}</td>
     <td class="row-actions">
       <button class="action-btn view-btn pi pi-eye"></button>
       <button class="action-btn edit-btn pi pi-pencil" @click="handleEdit(product)"></button>
@@ -89,6 +113,8 @@ const handleDelete = (product: any) => {
           }
       }
   }
+
+
 
 
 </style>
