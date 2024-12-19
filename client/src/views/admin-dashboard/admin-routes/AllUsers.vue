@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import AdminTable from '../../../components/admin-table/AdminTable.vue';
 
 
 </script>
@@ -7,5 +6,4 @@ import AdminTable from '../../../components/admin-table/AdminTable.vue';
 
 <template>
     <h2>All Users</h2>
-    <AdminTable/>   
 </template>

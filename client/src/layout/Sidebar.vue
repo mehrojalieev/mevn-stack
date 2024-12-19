@@ -62,7 +62,7 @@ const menu = role === "admin" ? adminMenu : userMenu;
 
 .sidebar {
     width: 100%;
-    max-width: 250px;
+    max-width: 220px;
     height: 100vh;
     background-color: var(--gray-dark);
     padding: 0 .8rem;
@@ -70,11 +70,13 @@ const menu = role === "admin" ? adminMenu : userMenu;
 
 .sidebar__lists-menu {
     margin-top: 2rem;
+    text-align: left;
 }
 
 
 .menu-list {
     display: flex;
+    text-align: left;
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
@@ -91,10 +93,10 @@ const menu = role === "admin" ? adminMenu : userMenu;
         display: flex;
         align-items: center;
         justify-content: flex-start;
-        column-gap: .7rem;
+        column-gap: .4rem;
         width: 100%;
-        padding: .8rem 1.6rem;
-        @include f-style(16px, 400, var(--light-color));
+        padding: .7rem 1.6rem .7rem .6rem;
+        @include f-style(15px, 400, var(--light-color));
         letter-spacing: 1px;
         border-radius: 6px;
 
@@ -103,7 +105,7 @@ const menu = role === "admin" ? adminMenu : userMenu;
         }
 
         i {
-            @include f-style(1.1rem, 500, var(--primary-success));
+            @include f-style(1rem, 500, var(--primary-success));
         }
     }
 }

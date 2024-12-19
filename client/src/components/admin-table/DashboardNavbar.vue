@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted, watch } from "vue";
-import { useRouter, useRoute } from "vue-router"; // Routerni import qilish
+import {  useRoute } from "vue-router"; 
 import UzFlag from "../../assets/images/UzbFlag.svg";
 import RuFlag from "../../assets/images/RusFlag.svg";
 import EngFlag from "../../assets/images/EngFlag.svg";
