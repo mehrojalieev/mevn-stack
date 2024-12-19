@@ -11,7 +11,9 @@ import DashboardNavbar from '../../components/admin-table/DashboardNavbar.vue';
         <Sidebar/>
         <div class="dashboard__main-content">
                 <DashboardNavbar/>
-            <RouterView/>
+                <div class="main__content-routes">
+                    <RouterView/>
+                </div>
         </div>
     </div>
 </template>
@@ -33,4 +35,8 @@ import DashboardNavbar from '../../components/admin-table/DashboardNavbar.vue';
         height: 100%;
         overflow-y: auto;
     }
+    .main__content-routes{
+        height: 83vh;
+        overflow-y: auto;
+        }
 </style>

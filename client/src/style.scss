@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 *{
   margin: 0;
@@ -12,6 +13,8 @@
   --primary-success: #2B9670;
   --gray-dark: #18181B;
   --gray-dark-hover: #4a4a4d44;
+  --danger-color: #ff0000;
+  --warning-color: #ffcc00e5;
 }
 
 a{
@@ -20,6 +23,14 @@ a{
 
 li{
   list-style: none;
+}
+
+button{
+  cursor: pointer;
+  border:none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .router-link-exact-active{
@@ -32,4 +43,41 @@ li{
     background-color: #2b9671af !important;
     color: var(--light-color);
   }
+}
+
+::-webkit-scrollbar {
+  width: 8px;  
+  height: fit-content; 
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #2B9670; 
+  border-radius: 8px;  
+  border: 1px solid #ffffff;  
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #237a59; 
+}
+
+::-webkit-scrollbar-track {
+  background-color: #f1f1f1;  
+  border-radius: 8px; 
+}
+
+
+
+::-webkit-scrollbar-button {
+  background-color: transparent;
+}
+
+
+.btn-success{
+  background-color: var(--primary-success);
+  color: var(--light-color);
+}
+
+.btn-danger{
+  background-color: var(--primary-success);
+  color: var(--light-color);
 }

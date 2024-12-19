@@ -1,27 +1,18 @@
-import { createApp } from 'vue'
-import './style.scss'
-import App from './App.vue'
-import routes from './routes'
-import PrimeVue from 'primevue/config';
+import { createApp } from 'vue';
+import './style.scss';
+import App from './App.vue';
+import routes from './routes'; 
 
-import 'primeicons/primeicons.css'; 
-
-
-const app = createApp(App)
-
-import  {Column, DataTable, Tag, Button, Rating, Select}  from 'primevue';
-
-app.use(PrimeVue)
-
-app.component('DataTable', DataTable);
-app.component('Column', Column);
-app.component('Tag', Tag);
-app.component('Button', Button);
-app.component('Rating', Rating);
-app.component('Select', Select)
+// import "bootstrap/dist/css/bootstrap.min.css"
+import "bootstrap"
+import 'primeicons/primeicons.css'
 
 
 
-app.use(routes)
+const app = createApp(App);
 
-app.mount('#app')
+app.use(routes);
+
+
+// Mount the app
+app.mount('#app');
