@@ -61,7 +61,7 @@ const handleDelete = (product: any) => {
     <td>{{ product.price }}</td>
     <td>{{ product.stock }}</td>
     <td>{{ product.category }}</td>
-    <td :class="statusClass">{{ status }}</td>
+    <td  class="product-status"><button :class="statusClass" class="status-btn" >{{ status }}</button></td>
     <td class="row-actions">
       <button class="action-btn view-btn pi pi-eye"></button>
       <button class="action-btn edit-btn pi pi-pencil" @click="handleEdit(product)"></button>
@@ -89,18 +89,32 @@ const handleDelete = (product: any) => {
       height: 45px;
       object-fit: contain;
     }
+    .product-status{
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      @include f-style(15px, 500, var(--light-color));
+      .status-btn{
+        border-radius: 6px;
+        padding: 2px 8px;
+        letter-spacing: .5px;
+        @include f-style(13px, 400, var(--light-color));
+        text-transform: lowercase;
+      }
+    }
     .row-actions{
-          width: 80px;
+          width: fit-content;
           padding: 1rem !important;
-          display: flex;
+          /* display: flex; */
           align-items: center;
-          justify-content: center;
+          /* justify-content: center; */
           height: 40px !important;
           column-gap: 10px;
           .action-btn{
-            padding: 8px 12px;
+            margin: 0 4px;
+            padding: 7px 10px;
             border-radius: 6px;
-            @include f-style(15px, 500, var(--light-color));
+            @include f-style(14px, 500, var(--light-color));
           }
           .edit-btn{
             background-color: var(--primary-success);
