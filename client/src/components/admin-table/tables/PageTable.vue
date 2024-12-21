@@ -1,16 +1,25 @@
 <script setup lang="ts">
 import ProductTr from './ProductTr.vue';
+import UserTr from './UserTr.vue';
 
     const props = defineProps({
-        products: {
+        data: {
             type: Array,
-            required: true
+            required: false
+        },
+        headerColumns: {
+            type: Array as any,
+            required: false
         },
         type: {
             type: String,
-            required: true
+            required: false
         }
     })
+
+
+    console.log(props.type);
+    
 
 
     const statusList = ["INSTOCK",  "OUTOFSTOCK", "LIMITED", "COMINGSOON", "DISCONTINUED"];
@@ -18,6 +27,9 @@ import ProductTr from './ProductTr.vue';
 function getRandomStatus() {
     return statusList[Math.floor(Math.random() * statusList.length)];
 }
+
+console.log(props.headerColumns);
+
     
 </script>
 
@@ -32,24 +44,13 @@ function getRandomStatus() {
       <div class="table-wrapper">
         <table>
           <thead>
-            <tr>
-              <th>Id</th>
-              <th>Title</th>
-              <th>Image</th>
-              <th>Price</th>
-              <th>Stock</th>
-              <th>Category</th>
-              <th>Status</th>
-              <th>Action</th>
+            <tr >
+              <th v-for="(column, index) in props.headerColumns" :key="index">{{ column.label }}</th>
             </tr>
           </thead>
           <tbody>
-            <ProductTr
-              :status="getRandomStatus()"
-              :product="product as any"
-              v-for="(product, index) in props.products"
-              :key="index"
-            />
+            <ProductTr v-if="type === 'product'" :isLoading="false" :status="getRandomStatus()" :product="product as any" v-for="(product, index) in props.data" :key="`product-${index}`"/>
+            <UserTr v-else-if="type === 'users'" :isLoading="false" :user="user as any" v-for="(user, index) in props.data" :key="`user-${index}`"/>
           </tbody>
         </table>
       </div>
@@ -75,6 +76,7 @@ function getRandomStatus() {
 
 .table-wrapper {
   max-height: 525px;
+  height: 100%;
   overflow-y: auto; 
 }
 
@@ -89,7 +91,8 @@ table {
     top: 0;
     background-color: rgb(36, 35, 35) !important;
     z-index: 10;
-    border-bottom: 2px solid red; 
+    height: 60px;
+    border-bottom: 1px solid rgb(92, 92, 92) !important; 
 
     th {
       @include f-style(15px, 500, var(--primary-success));
