@@ -78,7 +78,6 @@ const updateBreadCrumb = (path: string) => {
   items.value = updatedItems;
 };
 
-// Route o‘zgarganda yana BreadCrumbni yangilash
 watch(() => route.path, (newPath) => {
   updateBreadCrumb(newPath);
 });
@@ -95,12 +94,12 @@ watch(() => route.path, (newPath) => {
         <div class="language-select">
           <button class="selected" @click="toggleLanguageDropdown">
             <img
-              :src="languages.find(lang => lang.code === selectedLanguage)?.flag"
+              :src="languages.find((lang:any) => lang.code === selectedLanguage)?.flag"
               :alt="`Flag of ${selectedLanguage}`"
               class="flag"
             />
             <span class="language-name">
-              {{ languages.find(lang => lang.code === selectedLanguage)?.name }}
+              {{ languages.find((lang: any ) => lang.code === selectedLanguage)?.name }}
             </span>
           </button>
           <ul class="dropdown" v-if="languageDropdown">

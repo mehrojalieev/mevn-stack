@@ -1,18 +1,8 @@
 <script setup lang="ts">
-import { computed } from 'vue';
 
 const props = defineProps({
-  product: {
-    type: Object as () => {
-      id: number;
-      title: string;
-      images: string[];
-      price: number;
-      stock: number;
-      category: string;
-      rating: number;
-      status: string;
-    },
+  user: {
+    type: Object,
     required: true,
   },
   isLoading: {
@@ -21,29 +11,14 @@ const props = defineProps({
   },
   status: {
         type: String,
-        required: true,
+        required: false,
     },
 });
 
 
+console.log(props);
 
 
-const statusClass = computed(() => {
-    switch (props.status) {
-        case "INSTOCK":
-            return "text-success";
-        case "OUTOFSTOCK":
-            return "text-danger";
-        case "LIMITED":
-            return "text-warning";
-        case "COMINGSOON":
-            return "text-info";
-        case "DISCONTINUED":
-            return "text-muted";
-        default:
-            return "";
-    }
-});
 
 
 const handleEdit = (product: any) => {
@@ -57,19 +32,20 @@ const handleDelete = (product: any) => {
 
 <template>
   <tr class="product-row" v-if="!isLoading">
-    <td>{{ product.id }}</td>
-    <td>{{ product.title.slice(0, 10) }}...</td>
+    <td>{{ user.id }}</td>
+    <td>{{ user?.name?.slice(0, 10) }}...</td>
+    <td>{{ user?.email?.slice(0, 10) }}...</td>
+    <td>{{ user?.role }}</td>
+    <td>{{ user?.status}}</td>
+    <td>{{ user?.createdAt.slice(0, 10)}}</td>
+
     <td>
-      <img :src="product.images[0]"  alt="Product Image" />
+      <img :src="user.avatar"  alt="Product Image" />
     </td>
-    <td>{{ product.price }}</td>
-    <td>{{ product.stock }}</td>
-    <td>{{ product.category }}</td>
-    <td  class="product-status"><button :class="statusClass" class="status-btn" >{{ status }}</button></td>
     <td class="row-actions">
       <button class="action-btn view-btn pi pi-eye"></button>
-      <button class="action-btn edit-btn pi pi-pencil" @click="handleEdit(product)"></button>
-      <button class="action-btn delete-btn pi pi-trash" @click="handleDelete(product)"></button>
+      <button class="action-btn edit-btn pi pi-pencil" @click="handleEdit(user)"></button>
+      <button class="action-btn delete-btn pi pi-trash" @click="handleDelete(user)"></button>
     </td>
   </tr>
 
