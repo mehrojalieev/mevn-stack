@@ -44,11 +44,37 @@ for (let index = 0; index < 30; index++) {
     
 }
 
+const select = { state: 'Florida', abbr: 'FL' }
+        const  items = [
+          { state: 'Florida', abbr: 'FL' },
+          { state: 'Georgia', abbr: 'GA' },
+          { state: 'Nebraska', abbr: 'NE' },
+          { state: 'California', abbr: 'CA' },
+          { state: 'New York', abbr: 'NY' },
+        ]
+
 
 </script>
 
 <template>
- <PageTable :type="'product'"  :products="allProduct"/>
+ <PageTable :type="'product'"  :products="allProduct">
+    <template #search>
+        <form>
+            <v-select
+    v-model="select"
+    :hint="`${select.state}, ${select.abbr}`"
+    :items="items"
+    item-title="state"
+    item-value="abbr"
+    label="Select"
+    persistent-hint
+    return-object
+    single-line
+  ></v-select>
+
+        </form>
+    </template>
+ </PageTable>
 </template>
 
 
