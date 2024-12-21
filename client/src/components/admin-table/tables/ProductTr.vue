@@ -78,21 +78,24 @@ const handleDelete = (product: any) => {
   color: $color;
 }
   .product-row{
-    width: 100%;
-    /* height: 50px !important; */
+    width: 100% !important;
+    height: 100%;
+    height: 50px !important;
     td{
       @include f-style(15px, 500, var(--light-color));
       height: 100%;
     }
     td > img{
       width: 50px;
-      height: 45px;
+      height: 50px;
       object-fit: contain;
     }
     .product-status{
       display: flex;
       justify-content: center;
-      width: 100%;
+      align-items: center;
+      height: 61px !important;
+      /* width: fit-content; */
       @include f-style(15px, 500, var(--light-color));
       .status-btn{
         border-radius: 6px;
@@ -103,8 +106,8 @@ const handleDelete = (product: any) => {
       }
     }
     .row-actions{
-          width: fit-content;
           padding: 1rem !important;
+          vertical-align: middle !important;
           /* display: flex; */
           align-items: center;
           /* justify-content: center; */

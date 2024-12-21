@@ -37,6 +37,7 @@ import DashboardNavbar from '../../components/admin-table/DashboardNavbar.vue';
     }
     .main__content-routes{
         height: 83vh;
+        margin-top: 2rem !important;
         overflow-y: auto;
         }
 </style>
