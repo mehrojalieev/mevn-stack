@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import { computed } from 'vue';
+import {Modal} from 'ant-design-vue'
+import { ExclamationCircleOutlined } from '@ant-design/icons-vue';
+import { createVNode } from 'vue';
 
 const props = defineProps({
   product: {
@@ -50,8 +53,28 @@ const handleEdit = (product: any) => {
   console.log(`Editing product: ${product.name}`);
 };
 
-const handleDelete = (product: any) => {
-  console.log(`Deleting product: ${product.name}`);
+// const handleDelete = (product: any) => {
+//   console.log(`Deleting product: ${product.name}`);
+// };
+
+
+const showConfirm = () => {
+  Modal.confirm({
+    okText: 'Delete',
+    cancelText: 'Cancel',
+    okType: 'danger',
+    centered: true,
+    bodyStyle: {padding: 0},
+    mask: true,
+    title: 'Do you want to delete this product?',
+    icon: createVNode(ExclamationCircleOutlined),
+    onOk() {
+      return new Promise((resolve, reject) => {
+        setTimeout(Math.random() > 0.5 ? resolve : reject, 800);
+      }).catch(() => console.log('Oops errors!'));
+    },
+    onCancel() {},
+  });
 };
 </script>
 
@@ -69,7 +92,8 @@ const handleDelete = (product: any) => {
     <td class="row-actions">
       <button class="action-btn view-btn pi pi-eye"></button>
       <button class="action-btn edit-btn pi pi-pencil" @click="handleEdit(product)"></button>
-      <button class="action-btn delete-btn pi pi-trash" @click="handleDelete(product)"></button>
+      <!-- <button class="action-btn delete-btn pi pi-trash" @click="handleDelete(product)"></button> -->
+      <a-button okText="Yes" class="action-btn delete-btn pi pi-trash" @click="showConfirm"></a-button>
     </td>
   </tr>
 
