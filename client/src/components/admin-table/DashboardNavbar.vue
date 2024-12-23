@@ -35,9 +35,9 @@ const profileDropdown = ref(false);
 
 // Foydalanuvchi ma'lumotlari
 const user = ref({
-  name: "John Doe",
+  name: "Mehrojbek",
   email: "john.doe@example.com",
-  avatar: "https://i.pravatar.cc/150?img=10", 
+  avatar: "https://img.freepik.com/premium-vector/m-letter-logo-design_1159859-5474.jpg", 
 });
 
 const toggleProfileDropdown = () => {
