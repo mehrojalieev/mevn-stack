@@ -12,7 +12,7 @@ const allUsers = ref<any>([])
             role: ['admin', 'user'][Math.floor(Math.random() * 2)],
             status: ['active', 'inactive'][Math.floor(Math.random() * 2)],
             createdAt: new Date().toISOString(),
-            avatar: 'https://i.pravatar.cc/150?img=10', 
+            avatar: 'https://i.pinimg.com/736x/8b/16/7a/8b167af653c2399dd93b952a48740620.jpg', 
         });
     }
 

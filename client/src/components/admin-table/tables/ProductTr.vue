@@ -83,7 +83,7 @@ const showConfirm = () => {
     <td>{{ product.id }}</td>
     <td>{{ product.title.slice(0, 10) }}...</td>
     <td>
-      <img :src="product.images[0]"  alt="Product Image" />
+      <img :src="product.images ? product.images[0] : 'https://img.freepik.com/premium-vector/m-letter-logo-design_1159859-5474.jpg'" loading="lazy"  alt="Product Image" />
     </td>
     <td>{{ product.price }}</td>
     <td>{{ product.stock }}</td>
