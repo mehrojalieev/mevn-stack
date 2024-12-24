@@ -28,9 +28,6 @@ const props = defineProps({
     },
 });
 
-
-
-
 const statusClass = computed(() => {
     switch (props.status) {
         case "INSTOCK":
@@ -50,12 +47,15 @@ const statusClass = computed(() => {
 
 
 const handleEdit = (product: any) => {
-  console.log(`Editing product: ${product.name}`);
+  console.log(`Editing product: ${product}`);
 };
 
-// const handleDelete = (product: any) => {
-//   console.log(`Deleting product: ${product.name}`);
-// };
+const handleDelete = (product: any) => {
+  console.log(`Deleting product: ${product.title}`);
+  // return new Promise((resolve, reject) => {
+  //       setTimeout(Math.random() > 0.5 ? resolve : reject, 800);
+  //     }).catch(() => console.log('Oops errors!'));
+};
 
 
 const showConfirm = () => {
@@ -69,9 +69,7 @@ const showConfirm = () => {
     title: 'Do you want to delete this product?',
     icon: createVNode(ExclamationCircleOutlined),
     onOk() {
-      return new Promise((resolve, reject) => {
-        setTimeout(Math.random() > 0.5 ? resolve : reject, 800);
-      }).catch(() => console.log('Oops errors!'));
+     handleDelete(props.product);
     },
     onCancel() {},
   });
@@ -92,7 +90,6 @@ const showConfirm = () => {
     <td class="row-actions">
       <button class="action-btn view-btn pi pi-eye"></button>
       <button class="action-btn edit-btn pi pi-pencil" @click="handleEdit(product)"></button>
-      <!-- <button class="action-btn delete-btn pi pi-trash" @click="handleDelete(product)"></button> -->
       <a-button okText="Yes" class="action-btn delete-btn pi pi-trash" @click="showConfirm"></a-button>
     </td>
   </tr>
@@ -161,8 +158,16 @@ const showConfirm = () => {
       }
   }
 
-
-
+  .ant-modal-content{
+    background-color: var(--gray-dark) !important;
+    .ant-modal-confirm-title{
+      @include f-style(15px, 400, var(--light-color) !important);
+    }
+    .ant-btn-dangerous{
+      background-color: var(--danger-color) !important;
+      @include f-style(14px, 400, var(--light-color) !important);
+    }
+  }
 
 
 </style>
