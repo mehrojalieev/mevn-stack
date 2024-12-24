@@ -90,7 +90,6 @@ table {
     position: sticky; 
     top: 0;
     background-color: rgb(36, 35, 35) !important;
-    z-index: 10;
     height: 60px;
     border-bottom: 1px solid rgb(92, 92, 92) !important; 
 

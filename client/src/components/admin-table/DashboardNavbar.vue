@@ -92,7 +92,7 @@ watch(() => route.path, (newPath) => {
 
     <div class="dashboard__navbar-actions">
         <div class="language-select">
-          <button class="selected" @click="toggleLanguageDropdown">
+          <button class="selected" @click="toggleLanguageDropdown" @mouseout="toggleLanguageDropdown">
             <img
               :src="languages.find((lang:any) => lang.code === selectedLanguage)?.flag"
               :alt="`Flag of ${selectedLanguage}`"
@@ -117,7 +117,7 @@ watch(() => route.path, (newPath) => {
         </div>
     
         <div class="avatar-container">
-          <button class="avatar-button" @click="toggleProfileDropdown">
+          <button class="avatar-button" @click="toggleProfileDropdown" @mouseout="toggleProfileDropdown">
             <img :src="user.avatar" alt="User Avatar" class="avatar" />
             <span class="user-name">{{ user.name }}</span>
             <i class="pi pi-caret-down"></i>
@@ -161,6 +161,7 @@ watch(() => route.path, (newPath) => {
   margin: 10px 0;
   border-radius: 6px;
   background-color: var(--gray-dark);
+  z-index: 100 !important;
 }
 
 .dashboard__navbar-actions{
