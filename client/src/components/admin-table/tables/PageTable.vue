@@ -34,10 +34,6 @@ console.log(props.headerColumns);
 </script>
 
 
-
-
-
-
 <template>
     <div class="page__table-container">
       <slot name="search" />
