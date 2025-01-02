@@ -18,10 +18,6 @@ import UserTr from './UserTr.vue';
     })
 
 
-    console.log(props.type);
-    
-
-
     const statusList = ["INSTOCK",  "OUTOFSTOCK", "LIMITED", "COMINGSOON", "DISCONTINUED"];
 
 function getRandomStatus() {
