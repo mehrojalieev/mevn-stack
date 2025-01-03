@@ -1,6 +1,5 @@
 const mongoose = require('mongoose')
-const validator = require("validator")
-
+const Joi = require("joi")
 const userSchema = new mongoose.Schema({
     firstname: {
         type: String,
@@ -10,23 +9,18 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    email:{
+    email: {
         type: String,
-        trim: true,
-        required: [true, 'Email address is required'],
-        validate: {
-            validator: validator.isEmail,
-            message: "Provide a valid email"
-        }
-        
+        required: true
+
     },
     password: {
         type: String,
-        required: [true, 'Password is required'],
-        validate: {
-            validator: (value) => validator.isStrongPassword(value, {minLength: 8, minNumbers: 1}),
-            message: "Password must be at least 8 characters long and contain at least 1 number"
-        }
+        required: true,
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now,
     },
     role: {
         type: String,
@@ -35,6 +29,17 @@ const userSchema = new mongoose.Schema({
 })
 
 
-const UserSchema = mongoose.model('users', userSchema)
+const UserSchema = mongoose.model('users', userSchema);
 
-module.exports = UserSchema;
+const validateUser = (data) => {
+    const schema = Joi.object({
+        firstname: Joi.string().min(2).max(30).required(),
+        lastname: Joi.string().min(2).max(30).required(),
+        email: Joi.string().email().required(),
+        password: Joi.string().min(6).required(),
+        role: Joi.string().valid("user", "admin").optional()
+    });
+    return schema.validate(data)
+}
+
+module.exports = { UserSchema, validateUser };
