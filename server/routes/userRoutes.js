@@ -2,10 +2,11 @@ const express = require('express');
 const { UserSchema, validateUser } = require('../models/users');
 const router = express.Router()
 const bcrypt = require("bcrypt")
-const jwt = require("jsonwebtoken")
+const jwt = require("jsonwebtoken");
+const verify_admin = require('../middleware/verify-admin');
 
 
-router.get('/all', async (req, res) => {
+router.get('/all', verify_admin, async (req, res) => {
     try {
         const UserAll = await UserSchema.find()
         res.status(200).json(UserAll)
@@ -48,10 +49,12 @@ router.post('/register', async (req, res) => {
     }
 })
 
+
+// AUTH LOGIN
 router.post('/login', async (req, res) => {
     const { email, password } = req.body;
     try {
-        const user = UserSchema.findOne({ email })
+        const user = await UserSchema.findOne({ email: email })
         if (!user) {
             return res.status(400).json({ message: 'Email is incorrect !' })
         }
