@@ -10,8 +10,8 @@ const focusState = ref<{ email: boolean; password: boolean }>({
   password: false,
 });
 
-const email = ref<string>('');
-const password = ref<string>('');
+const email = ref<string>('alieev@gmail.com');
+const password = ref<string>('123456');
 const passwordType = ref<string>('password');
 
 const handlePasswordShow = () => {
@@ -24,9 +24,12 @@ const handlePasswordShow = () => {
        email: email.value,
        password: password.value
       })
+      
       if(response.data.token){
         localStorage.setItem('token', response.data.token);
-        router.push('/dashboard')
+        const role = 'admin'
+        const targetPath = role === 'admin' ? '/dashboard/admin' : '/dashboard/user'
+        router.push(targetPath);
       }
     } 
     catch (error) {

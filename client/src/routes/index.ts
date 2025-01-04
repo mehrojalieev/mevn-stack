@@ -53,27 +53,34 @@ const routes = createRouter({
 })
 
 
+function isAuthenticated() {
+    return !!localStorage.getItem("token");
+}
+
 routes.beforeEach((to, _, next) => {
-        const role = 'admin'
-        if(to.name === 'Dashboard'){
-            if(role === 'admin'){
-                next({name: 'AdminDashboard'})
+        const role: any = 'admin'
+        const isAuth = isAuthenticated()
+        console.log(isAuth);
+        
+        if(to.path.startsWith('/dashboard')){   
+            if(!isAuth ){
+               return next({name: 'Login'})
             }
-            else if(role === 'user'){
-                next({name: 'UserDashboard'})
+            else if(role === 'admin' && to.path.startsWith('/dashboard/user')){
+               return next({name: 'AdminDashboard'})
+            }
+            else if (role === "user" && to.path.startsWith("/dashboard/admin")) {
+               return next({ name: "UserDashboard" });
             }
             else{
-                if(to.path.startsWith('/dashboard/admin') && role !== 'admin'){
-                    next({name: 'Login'})
-                }
-                else if(to.path.startsWith("/dashboard/user") && role !== 'user'){
-                    next({name: 'Login'})
-                }
-                else{
-                    next()
-                }
+                next()
             }
         }
+
+        else if(to.name === 'Login' && isAuth){
+           return  next({name: role === 'admin' ? 'AdminDashboard' : 'UserDashboard'})
+        }
+
         else{
             next()
         }
