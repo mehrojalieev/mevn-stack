@@ -77,7 +77,7 @@ router.post('/login', async (req, res) => {
         const token = jwt.sign(userJWT, process.env.JWT_SECRET, { expiresIn: "2d" })
 
         res.status(200).json({
-            status: "OK",
+            status: 200,
             message: "Login successfully",
             token: token
         })
