@@ -1,0 +1,54 @@
+<script setup lang="ts">
+import { ref } from 'vue';
+import { useRouter } from 'vue-router';
+import ApiInstance from '../../services/api';
+
+const router = useRouter();
+
+const focusState = ref<{ email: boolean; password: boolean }>({
+  email: false,
+  password: false,
+});
+
+const email = ref<string>('');
+const password = ref<string>('');
+const passwordType = ref<string>('password');
+
+const handlePasswordShow = () => {
+  passwordType.value = passwordType.value === 'password' ? 'text' : 'password';
+};
+
+  const handleLogin = async () => {
+    try {
+      const response = await ApiInstance.post("/auth/login", {
+       email: email.value,
+       password: password.value
+      })
+      if(response.data.token){
+        localStorage.setItem('token', response.data.token);
+        router.push('/dashboard')
+      }
+    } 
+    catch (error) {
+        console.error(error);
+        
+    }
+   
+  }
+
+</script>
+
+<template>
+    <h2 class="auth-title">Login</h2>
+    <h6 class="auth-subtitle">Please enter your details</h6>
+    <div :style="focusState.email ? 'border: 1px solid var(--primary-success)' : 'border: 1px solid #BAC4D1'" class="input-item">
+      <i class="pi pi-envelope"></i>
+      <input v-model="email" @focus="focusState.email = true" @blur="focusState.email = false"  type="email"  placeholder="Email"/>
+    </div>
+  <div :style="focusState.password ? 'border: 1px solid var(--primary-success)' : 'border: 1px solid #BAC4D1'" class="input-item password-item">
+    <i class="pi pi-lock"></i>
+    <input v-model="password"  @focus="focusState.password = true"  @blur="focusState.password = false"  class="password-input"  :type="passwordType"  placeholder="Password"/>
+    <i  @click="handlePasswordShow"  :class="passwordType === 'password' ? 'pi pi-eye' : 'pi pi-eye-slash'"  id="password-toggle"></i>
+  </div>
+  <button type="button" @click="handleLogin" class="submit-btn">Login</button>
+</template>
