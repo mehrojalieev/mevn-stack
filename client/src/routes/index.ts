@@ -4,6 +4,23 @@ const routes = createRouter({
     history: createWebHistory(),
     routes:[
         {
+            path: "/auth/",
+            name: "Auth",
+            component: () => import('../views/auth/Auth.vue'),
+            children: [
+                {
+                    path: 'login',
+                    name: "Login",
+                    component: () => import('../views/auth/Login.vue')
+                },
+                {
+                    path: 'register',
+                    name: "Register",
+                    component: () => import('../views/auth/Register.vue')
+                }
+            ]
+        },
+        {
             path: '/dashboard',
             name: "Dashboard",
             component: () => import('../views/dashboard/Dashboard.vue'),

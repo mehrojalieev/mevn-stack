@@ -1,7 +1,10 @@
 {
   "files": [],
+  "compilerOptions": {
+    "typeRoots": ["node_modules/@types", "vue-shim.d.ts"]},
   "references": [
     { "path": "./tsconfig.app.json" },
     { "path": "./tsconfig.node.json" }
   ]
 }
+
