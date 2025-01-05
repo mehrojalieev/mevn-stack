@@ -3,9 +3,11 @@ import { ref } from 'vue';
 import ApiInstance from '../../services/api';
 import { useRouter } from 'vue-router';
 import Button from '../../utils/Button.vue';
+import {POSITION, useToast} from "vue-toastification"
+
 
 const router = useRouter();
-
+const toast = useToast();
 
 interface FocusType {
     firstname: boolean;
@@ -43,7 +45,8 @@ const handleRegister = async () => {
        email: email.value,
        password: password.value
       })
-      
+        console.log(response.data);
+        
       if(response.data.token){
         localStorage.setItem('token', response.data.token);
         const role = 'admin'
@@ -52,8 +55,19 @@ const handleRegister = async () => {
         router.push(targetPath);
       }
     } 
-    catch (error) {
-        console.error(error);
+    catch (error: any) {
+        isLoading.value = false
+        if(error.response?.data?.message){
+            toast.error(error.response.data.message, {
+                position: POSITION.TOP_RIGHT,
+                timeout: 3000,
+                hideProgressBar: true,
+                closeOnClick: true
+            })
+        }
+        else{
+            toast.error('An error occurred. Please try again.')
+        }
         
     }
    
@@ -64,12 +78,12 @@ const handleRegister = async () => {
 <template> 
     <h2 class="auth-title">Register</h2>
     <h6 class="auth-subtitle">Please enter your details</h6>
-    <div :style="focusState.email ? 'border: 1px solid var(--primary-success)' : 'border: 1px solid #BAC4D1'" class="input-item">
-      <i class="pi pi-envelope"></i>
+    <div :style="focusState.firstname ? 'border: 1px solid var(--primary-success)' : 'border: 1px solid #BAC4D1'" class="input-item">
+      <i class="pi pi-user"></i>
       <input v-model="firstname" @focus="focusState.firstname = true" @blur="focusState.firstname = false"  type="text"  placeholder="Firstname"/>
     </div>
-    <div :style="focusState.email ? 'border: 1px solid var(--primary-success)' : 'border: 1px solid #BAC4D1'" class="input-item">
-      <i class="pi pi-envelope"></i>
+    <div :style="focusState.lastname ? 'border: 1px solid var(--primary-success)' : 'border: 1px solid #BAC4D1'" class="input-item">
+      <i class="pi pi-user"></i>
       <input v-model="lastname" @focus="focusState.lastname = true" @blur="focusState.lastname = false"  type="text"  placeholder="Lastname"/>
     </div>
     <div :style="focusState.email ? 'border: 1px solid var(--primary-success)' : 'border: 1px solid #BAC4D1'" class="input-item">
