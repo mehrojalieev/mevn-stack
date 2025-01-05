@@ -54,13 +54,12 @@ const routes = createRouter({
 
 
 function isAuthenticated() {
-    return !!localStorage.getItem("token");
+    return localStorage.getItem("token");
 }
 
 routes.beforeEach((to, _, next) => {
         const role: any = 'admin'
         const isAuth = isAuthenticated()
-        console.log(isAuth);
         
         if(to.path.startsWith('/dashboard')){   
             if(!isAuth ){
@@ -79,6 +78,9 @@ routes.beforeEach((to, _, next) => {
 
         else if(to.name === 'Login' && isAuth){
            return  next({name: role === 'admin' ? 'AdminDashboard' : 'UserDashboard'})
+        }
+        else if(to.name === "Dashboard" && isAuth){
+            return next({name: role === 'admin' ? 'AdminDashboard' : 'UserDashboard'})
         }
 
         else{

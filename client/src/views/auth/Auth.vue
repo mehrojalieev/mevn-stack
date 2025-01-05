@@ -1,6 +1,11 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router';
 
+const authToken = localStorage.getItem('token');
+
+if(authToken){
+    window.location.href = '/dashboard';
+}
 
 </script>
 
@@ -24,7 +29,7 @@ import { RouterView } from 'vue-router';
         place-items: center;
         width: 100vw;
         height: 100vh;
-        background: url('https://avatars.mds.yandex.net/i?id=be3881bfd0e8e0562c840b9fa87e5c29_l-5350948-images-thumbs&ref=rim&n=13&w=1920&h=1080') no-repeat center center / cover;
+        background: url('../../assets/images/AuthBg.png') no-repeat center center / cover;
 
     }
 
