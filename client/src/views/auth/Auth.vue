@@ -1,12 +1,14 @@
 <script setup lang="ts">
+import { RouterView } from 'vue-router';
+
 
 </script>
 
 <template>
     <section class="auth-wrapper">
-        <div class="auth__form-card">
+        <form class="auth__form-card">
             <RouterView/>
-        </div>
+        </form>
     </section>
 </template>
 
@@ -78,17 +80,17 @@
         }
     }
 
-    .submit-btn{
-        margin-top: 1.5rem !important;
+    .register-link{
+        margin-top: 21px;
+        display: block;
         width: 100%;
-        border-radius: 6px;
-        padding: 7px 0;
-        @include f-style(15px, 500, var(--light-color));
-        background-color: var(--primary-success);
-        border: none;
-        cursor: pointer;
-        &:hover{
-            opacity: .8;
+        @include f-style(15px, 500, rgba(0, 0, 0, 0.795));
+        .link{
+            color: var(--primary-success);
+            &:hover{
+                opacity: .8;
+            }
         }
     }
+
 </style>

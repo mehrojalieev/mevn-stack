@@ -2,6 +2,8 @@
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import ApiInstance from '../../services/api';
+import Button from '../../utils/Button.vue';
+import VerifyRole from '../../helpers/verify-role';
 
 const router = useRouter();
 
@@ -13,12 +15,14 @@ const focusState = ref<{ email: boolean; password: boolean }>({
 const email = ref<string>('alieev@gmail.com');
 const password = ref<string>('123456');
 const passwordType = ref<string>('password');
+const isLoading = ref<boolean>(false);
 
 const handlePasswordShow = () => {
   passwordType.value = passwordType.value === 'password' ? 'text' : 'password';
 };
 
   const handleLogin = async () => {
+    isLoading.value = true
     try {
       const response = await ApiInstance.post("/auth/login", {
        email: email.value,
@@ -27,18 +31,18 @@ const handlePasswordShow = () => {
       
       if(response.data.token){
         localStorage.setItem('token', response.data.token);
-        const role = 'admin'
+        isLoading.value = false
+        const role = VerifyRole(response.data.token)
+        
         const targetPath = role === 'admin' ? '/dashboard/admin' : '/dashboard/user'
         router.push(targetPath);
       }
     } 
     catch (error) {
         console.error(error);
-        
     }
    
   }
-
 </script>
 
 <template>
@@ -53,5 +57,6 @@ const handlePasswordShow = () => {
     <input v-model="password"  @focus="focusState.password = true"  @blur="focusState.password = false"  class="password-input"  :type="passwordType"  placeholder="Password"/>
     <i  @click="handlePasswordShow"  :class="passwordType === 'password' ? 'pi pi-eye' : 'pi pi-eye-slash'"  id="password-toggle"></i>
   </div>
-  <button type="button" @click="handleLogin" class="submit-btn">Login</button>
+  <Button :loading="isLoading" text="Log in" class="submit-btn" @click="handleLogin"/>
+  <p  class="register-link">Don't have an account?  <router-link to="/auth/register" class="link" > Register</router-link></p>
 </template>
