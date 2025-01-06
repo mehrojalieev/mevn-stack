@@ -1,7 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose')
 require('dotenv').config();
-const cors = require("cors")
+const cors = require("cors");
+const { swaggerUi, swaggerDocs } = require('./swagger');
 
 const app = express();
 
@@ -30,6 +31,9 @@ connectDB();
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error !!!:'));
 db.once('open', () => console.log('Connected to MongoDB !'));
+
+
+app.use('/swagger/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs))
 
 
 app.use("/api/product",  require('./routes/productRoutes'));

@@ -18,6 +18,18 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    phoneNumber: {
+        type: Number,
+        required: false,
+    },
+    dateOfBirth: {
+        type: String,
+        required: false
+    },
+    gender: {
+        type: String,
+        required: false
+    },
     createdAt: {
         type: Date,
         default: Date.now,
@@ -37,7 +49,9 @@ const validateUser = (data) => {
         firstname: Joi.string().min(2).max(30).required(),
         lastname: Joi.string().min(2).max(30).required(),
         email: Joi.string().email().required(),
+        phoneNumber: Joi.number().max(10),
         password: Joi.string().min(6).required(),
+        gender: Joi.string().min(3),
         role: Joi.string().valid("user", "admin").optional()
     });
     return schema.validate(data)
