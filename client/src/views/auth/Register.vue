@@ -12,7 +12,7 @@ const toast = useToast();
 interface FocusType {
     firstname: boolean;
     lastname: boolean;
-    email: boolean;
+    email: boolean; 
     password: boolean
 }
 

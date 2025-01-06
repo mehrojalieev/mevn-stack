@@ -12,10 +12,10 @@ const swaggerOptions = {
                          name: 'Developer'
                  },
                  servers: [
-                         {
-                                 url: 'http://localhost:4545'
-                 }
-                 ]
+                        { url: 'http://localhost:4545' },
+                        { url: 'https://mevn-stack-15sj.onrender.com' }
+                    ]
+                    
          },
 
  },
