@@ -1,4 +1,5 @@
 const express = require("express")
+const ProductSchema = require("../models/product.model")
 
 
 const router = express.Router()
@@ -6,16 +7,8 @@ const router = express.Router()
 
 router.get('/all', async (req, res) => {
         try {
-            const allProducts = [
-                {
-                    id: 1,
-                    title: "Mobile Phone",
-                    price: 200,
-                    description: "This is made by material",
-                    image: 'http://images/client'
-                }
-            ]
-            res.status(200).json(allProducts)
+            const productData = await ProductSchema.find()
+            res.status(200).json(productData)
         } 
         catch (error) {
             res.status(500).json({message: error.message})   
