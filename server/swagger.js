@@ -14,12 +14,26 @@ const swaggerOptions = {
                  servers: [
                         { url: 'http://localhost:4545' },
                         { url: 'https://mevn-stack-15sj.onrender.com' }
-                    ]
+                    ],
+                    components: {
+                        schemas: {
+                            User: {
+                                type: 'object',
+                                properties: {
+                                    _id: { type: 'string' },
+                                    firstname: { type: 'string' },
+                                    larstname: { type: 'string' },
+                                    email: { type: 'string' },
+                                    role: { type: 'string' },
+                                },
+                            },
+                        },
+                    },
                     
          },
 
  },
- apis: ['./routes/*.js']
+ apis: ['./swagger/*.js']
 }
 
 const swaggerDocs = swaggerjsDoc(swaggerOptions)
