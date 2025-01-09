@@ -1,5 +1,7 @@
 const { UserSchema } = require("../models/user.model");
 const { registerValidation, loginValidation } = require("../validations/authValidation")
+const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
 
 
 exports.register = async (req, res) => {
@@ -64,7 +66,6 @@ exports.login = async (req, res) => {
         res.status(500).json({ message: error.message })
     }
 }
-
 
 
 exports.delete = async (req, res) => {
