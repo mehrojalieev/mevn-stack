@@ -1,6 +1,6 @@
 const { UserSchema } = require("../models/user.model")
 
-exports.getAllUers = async (req, res) => {
+const getAllUers = async (req, res) => {
     try {
         const users = await UserSchema.find();
         res.status(200).json(users);
@@ -11,7 +11,7 @@ exports.getAllUers = async (req, res) => {
 }
 
 
-exports.getUserById = async (req, res) => {
+const getUserById = async (req, res) => {
     try {
         const user = await UserSchema.findById(req.params.id);
 
@@ -24,7 +24,7 @@ exports.getUserById = async (req, res) => {
 }
 
 
-exports.deleteUser = async (req, res) => {
+const deleteUser = async (req, res) => {
     try {
         const deletedUser = await UserSchema.findByIdAndDelete(req.params.id);
         if(!deletedUser) return res.status(404).json({message: 'User not found'});
@@ -36,3 +36,5 @@ exports.deleteUser = async (req, res) => {
         
     }
 }
+
+module.exports = {getAllUers, getUserById, deleteUser}
