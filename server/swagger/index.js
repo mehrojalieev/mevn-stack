@@ -16,6 +16,19 @@ const swaggerOptions = {
                         { url: 'https://mevn-stack-15sj.onrender.com' }
                     ],
                     components: {
+                        securitySchemas:{
+                            bearerAuth: {
+                                type: 'https',
+                                scheme: 'bearer',
+                                bearerFormat: 'JWT'
+                            }
+                        },
+                        security:[
+                            {
+                                bearerAuth: []
+                            }
+                        ]
+                        },
                         schemas: {
                             User: {
                                 type: 'object',
@@ -28,11 +41,8 @@ const swaggerOptions = {
                                 },
                             },
                         },
-                    },
-                    
+                    },         
          },
-
- },
  apis: ['./swagger/*.js']
 }
 

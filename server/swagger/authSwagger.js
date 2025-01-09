@@ -10,7 +10,9 @@
  * /api/auth/register:
  *   post:
  *     summary: Register a new user
- *     tags: [Users]
+ *     tags: [Auth],
+ *     security:
+ *      - bearerAuth: []
  *     requestBody:
  *       required: true
  *       content:
@@ -74,7 +76,7 @@
  * /api/auth/login:
  *   post:
  *     summary: Login a user
- *     tags: [Users]
+ *     tags: [Auth]
  *     requestBody:
  *       required: true
  *       content:
@@ -117,7 +119,7 @@
  * /api/auth/delete/{id}:
  *   delete:
  *     summary: Delete a user by ID (Admin only)
- *     tags: [Users]
+ *     tags: [Auth]
  *     security:
  *       - BearerAuth: []
  *     parameters:
