@@ -7,65 +7,89 @@
 
 /**
  * @swagger
- * /auth/register:
+ * /api/auth/register:
  *   post:
  *     summary: Register a new user
- *     tags: [Auth]
+ *     tags: [Users]
  *     requestBody:
  *       required: true
  *       content:
  *         application/json:
  *           schema:
  *             type: object
- *             required:
- *               - firstname
- *               - lastname
- *               - email
- *               - password
  *             properties:
  *               firstname:
  *                 type: string
- *                 example: John
+ *                 description: Enter your firstname
+ *                 example: "John"
  *               lastname:
  *                 type: string
- *                 example: Doe
+ *                 description: Enter your lastname
+ *                 example: "Doe"
  *               email:
  *                 type: string
- *                 example: john.doe@example.com
+ *                 description: Enter your email
+ *                 example: "john.doe@example.com"
  *               password:
  *                 type: string
- *                 example: strongpassword123
+ *                 description: Enter password
+ *                 example: "password123"
  *     responses:
- *       201:
+ *       200:
  *         description: User registered successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 _id:
+ *                   type: string
+ *                   description: The user ID
+ *                 firstname:
+ *                   type: string
+ *                   description: The user's firstname
+ *                 lastname:
+ *                   type: string
+ *                   description: The user's lastname
+ *                 email:
+ *                   type: string
+ *                   description: The user's email
+ *                 password:
+ *                   type: string
+ *                   description: Password
+ *                 createdAt:
+ *                   type: string
+ *                   format: date-time
+ *                   description: The date the user was created
  *       400:
- *         description: Bad request, invalid data
+ *         description: Validation error or email already exists
  *       500:
- *         description: Internal server error
+ *         description: Server error
  */
+
+
 
 /**
  * @swagger
- * /auth/login:
+ * /api/auth/login:
  *   post:
- *     summary: Log in a user
- *     tags: [Auth]
+ *     summary: Login a user
+ *     tags: [Users]
  *     requestBody:
  *       required: true
  *       content:
  *         application/json:
  *           schema:
  *             type: object
- *             required:
- *               - email
- *               - password
  *             properties:
  *               email:
  *                 type: string
- *                 example: john.doe@example.com
+ *                 description: User email
+ *                 example: "john.doe@example.com"
  *               password:
  *                 type: string
- *                 example: strongpassword123
+ *                 description: User password
+ *                 example: "password123"
  *     responses:
  *       200:
  *         description: Login successful
@@ -76,29 +100,36 @@
  *               properties:
  *                 token:
  *                   type: string
- *                   example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+ *                   description: JWT token for the authenticated user
+ *                 message:
+ *                   type: string
+ *                   description: Login success message
  *       400:
  *         description: Invalid email or password
  *       500:
- *         description: Internal server error
+ *         description: Server error
  */
+
+// AUTH LOGIN
 
 /**
  * @swagger
- * /auth/delete/{id}:
+ * /api/auth/delete/{id}:
  *   delete:
- *     summary: Delete a user by ID
- *     tags: [Auth]
+ *     summary: Delete a user by ID (Admin only)
+ *     tags: [Users]
+ *     security:
+ *       - BearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
- *         required: true
  *         schema:
  *           type: string
- *         description: The user ID
+ *         required: true
+ *         description: The ID of the user to delete
  *     responses:
  *       200:
- *         description: Successfully deleted the user
+ *         description: User deleted successfully
  *         content:
  *           application/json:
  *             schema:
@@ -106,11 +137,26 @@
  *               properties:
  *                 message:
  *                   type: string
- *                   example: User with ID 123456 deleted successfully!
- *                 user:
- *                   $ref: '#/components/schemas/User'
+ *                   description: Success message
+ *           
  *       404:
  *         description: User not found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   description: Error message
  *       500:
- *         description: Internal server error
+ *         description: Server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   description: Error message
  */
