@@ -5,6 +5,7 @@ import UzFlag from "../../assets/images/UzbFlag.svg";
 import RuFlag from "../../assets/images/RusFlag.svg";
 import EngFlag from "../../assets/images/EngFlag.svg";
 import BreadCrumb from "primevue/breadcrumb"; 
+import VerifyRole from "../../helpers/verify-role";
 
 const selectedLanguage = ref("EN");
 
@@ -33,6 +34,8 @@ const selectLanguage = (code: string) => {
 
 const profileDropdown = ref(false); 
 
+const userToken: any = localStorage.getItem("token") 
+
 // Foydalanuvchi ma'lumotlari
 const user = ref({
   name: "Mehrojbek",
@@ -43,6 +46,9 @@ const user = ref({
 const toggleProfileDropdown = () => {
   profileDropdown.value = !profileDropdown.value;
 };
+
+const UserData = VerifyRole(userToken)
+
 
 const handleAction = (action: string) => {
   console.log(`Action selected: ${action}`);
@@ -85,8 +91,8 @@ const handleAction = (action: string) => {
     
         <div class="avatar-container">
           <button class="avatar-button" @click="toggleProfileDropdown" >
-            <img :src="user.avatar" alt="User Avatar" class="avatar" />
-            <span class="user-name">{{ user.name }}</span>
+            <img  :src="user.avatar" alt="User Avatar" class="avatar" />
+            <span class="user-name">{{ UserData.firstname }}</span>
             <i class="pi pi-caret-down"></i>
           </button>
     
