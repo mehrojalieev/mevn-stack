@@ -10,7 +10,7 @@
  * /api/auth/register:
  *   post:
  *     summary: Register a new user
- *     tags: [Auth],
+ *     tags: [Auth]
  *     security:
  *      - bearerAuth: []
  *     requestBody:
