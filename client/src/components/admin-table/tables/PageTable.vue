@@ -18,13 +18,13 @@ import UserTr from './UserTr.vue';
     })
 
 
+      
+
     const statusList = ["INSTOCK",  "OUTOFSTOCK", "LIMITED", "COMINGSOON", "DISCONTINUED"];
 
 function getRandomStatus() {
     return statusList[Math.floor(Math.random() * statusList.length)];
 }
-
-console.log(props.headerColumns);
 
     
 </script>
@@ -37,11 +37,14 @@ console.log(props.headerColumns);
         <table>
           <thead>
             <tr >
-              <th v-for="(column, index) in props.headerColumns" :key="index">{{ column.label }}</th>
+              <th v-for="(column, index) in props.headerColumns"  :key="index">{{ column === 'colors' ? 'image': column }}</th>
+              <th>Actions</th>
+            </tr>
+            <tr >
             </tr>
           </thead>
           <tbody>
-            <ProductTr v-if="type === 'product'" :isLoading="false" :status="getRandomStatus()" :product="product as any" v-for="(product, index) in props.data" :key="`product-${index}`"/>
+            <ProductTr v-if="type === 'product'" :isLoading="false" :no="index + 1" :status="getRandomStatus()" :product="product as any" v-for="(product, index) in props.data" :key="`product-${index}`"/>
             <UserTr v-else-if="type === 'users'" :isLoading="false" :user="user as any" v-for="(user, index) in props.data" :key="`user-${index}`"/>
           </tbody>
         </table>

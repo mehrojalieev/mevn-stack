@@ -6,16 +6,7 @@ import { createVNode } from 'vue';
 
 const props = defineProps({
   product: {
-    type: Object as () => {
-      id: number;
-      title: string;
-      images: string[];
-      price: number;
-      stock: number;
-      category: string;
-      rating: number;
-      status: string;
-    },
+    type: Object,
     required: true,
   },
   isLoading: {
@@ -26,6 +17,10 @@ const props = defineProps({
         type: String,
         required: true,
     },
+    no: {
+      type: Number,
+      default: 0
+    }
 });
 
 const statusClass = computed(() => {
@@ -78,15 +73,15 @@ const showConfirm = () => {
 
 <template>
   <tr class="product-row" v-if="!isLoading">
-    <td>{{ product.id }}</td>
-    <td>{{ product.title.slice(0, 10) }}...</td>
-    <td>
-      <img :src="product.images ? product.images[0] : 'https://img.freepik.com/premium-vector/m-letter-logo-design_1159859-5474.jpg'" loading="lazy"  alt="Product Image" />
-    </td>
+    <td>{{ no }}</td>
+    <td>{{ product?.model.slice(0, 10) }}...</td>
+    <td>{{ product.category }}</td>
     <td>{{ product.price }}</td>
     <td>{{ product.stock }}</td>
-    <td>{{ product.category }}</td>
-    <td  class="product-status"><button :class="statusClass" class="status-btn" >{{ status }}</button></td>
+    <td  class="product-status"><button :class="statusClass" class="status-btn" >{{ product.discount }}</button></td>
+    <td>
+      <n-image width="50" height="50" :src="product.colors ? product?.colors[0]?.images[0] : 'https://img.freepik.com/premium-vector/m-letter-logo-design_1159859-5474.jpg'" loading="lazy"  alt="Product Image" />
+    </td>
     <td class="row-actions">
       <button class="action-btn view-btn pi pi-eye"></button>
       <button class="action-btn edit-btn pi pi-pencil" @click="handleEdit(product)"></button>

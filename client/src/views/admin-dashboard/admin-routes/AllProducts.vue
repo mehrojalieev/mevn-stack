@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { ref,  } from 'vue';
 import PageTable from '../../../components/admin-table/tables/PageTable.vue';
+import ApiInstance from '../../../services/api';
 
 defineOptions({
  name: 'AllProducts'
@@ -8,35 +9,36 @@ defineOptions({
 
 const allProduct = ref<any>([])
 
-async function renderProducts() {
-try {
-        const response = await fetch('https://dummyjson.com/products');
-        const data = await response.json();
-        allProduct.value = data.products;
-        console.log(data?.products);
-        
-} catch (error) {
-        console.error(error);
-}
+const productKeys = ref<Set<string>>(new Set());
+const requiredKeys = ["_id", "model",  "category", "price", "stock", "discount", "colors", ]
+
+async function renderProducts ()  {
+        try {
+                const response = await ApiInstance.get('/product/all')
+                allProduct.value = response.data
+
+                response?.data?.forEach((product: any) => {
+                Object.keys(product).forEach((key) => {
+                        if(requiredKeys.includes(key)){
+                        productKeys.value.add(key)
+                        }
+                });
+    });
+                
+        } 
+        catch (error:any) {
+                console.log(error);
+                        
+        }
 }
 renderProducts()
 
 
-const headerColumns= [
-    { label: 'Id', key: 'id' },
-    { label: 'Title', key: 'title' },
-    { label: 'Image', key: 'images' },
-    { label: 'Price', key: 'price' },
-    { label: 'Stock', key: 'stock' },
-    { label: 'Category', key: 'category' },
-    { label: 'Status', key: 'status' },
-    { label: 'Action', key: 'action' },
-  ]
 
 </script>
 
 <template>
- <PageTable :type="'product'" :header-columns="headerColumns"  :data="allProduct" >
+ <PageTable :type="'product'" :header-columns="Array.from(productKeys)"  :data="allProduct" >
     <template #search>
       
     </template>

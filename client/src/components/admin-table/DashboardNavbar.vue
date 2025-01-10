@@ -49,50 +49,16 @@ const handleAction = (action: string) => {
   profileDropdown.value = false;
 };
 
-// Vue Router dan foydalanish
-const route = useRoute();
-
-// BreadCrumb yo‘nalishlarini olish
-const items = ref([
-  { label: "Home", icon: "pi pi-home", to: "/" },
-  { label: "Dashboard", to: "/dashboard" },
-  { label: "Profile", to: "/profile" },
-]);
-
-// Route o‘zgarganda BreadCrumbni yangilash
-onMounted(() => {
-  updateBreadCrumb(route.path);
-});
-
-const updateBreadCrumb = (path: string) => {
-  const updatedItems = [];
-  if (path === "/") {
-    updatedItems.push({ label: "Home", icon: "pi pi-home", to: "/" });
-  } else if (path.startsWith("/dashboard")) {
-    updatedItems.push({ label: "Home", icon: "pi pi-home", to: "/" });
-    updatedItems.push({ label: "Dashboard", to: "/dashboard" });
-  } else if (path.startsWith("/profile")) {
-    updatedItems.push({ label: "Home", icon: "pi pi-home", to: "/" });
-    updatedItems.push({ label: "Profile", to: "/profile" });
-  }
-  items.value = updatedItems;
-};
-
-watch(() => route.path, (newPath) => {
-  updateBreadCrumb(newPath);
-});
 
 </script>
 
 <template>
   <div class="dashboard-navbar">
-    <div class="breadcrumb-container">
-      <BreadCrumb :model="items" />
-    </div>
+  <div></div>
 
     <div class="dashboard__navbar-actions">
-        <div class="language-select">
-          <button class="selected" @click="toggleLanguageDropdown" @mouseout="toggleLanguageDropdown">
+        <div  class="language-select">
+          <button class="selected" @click="toggleLanguageDropdown" >
             <img
               :src="languages.find((lang:any) => lang.code === selectedLanguage)?.flag"
               :alt="`Flag of ${selectedLanguage}`"
@@ -102,7 +68,7 @@ watch(() => route.path, (newPath) => {
               {{ languages.find((lang: any ) => lang.code === selectedLanguage)?.name }}
             </span>
           </button>
-          <ul class="dropdown" v-if="languageDropdown">
+          <ul  class="dropdown" v-if="languageDropdown">
             <li
               v-for="language in languages"
               :key="language.code"
@@ -114,10 +80,11 @@ watch(() => route.path, (newPath) => {
               <span>{{ language.name }}</span>
             </li>
           </ul>
+
         </div>
     
         <div class="avatar-container">
-          <button class="avatar-button" @click="toggleProfileDropdown" @mouseout="toggleProfileDropdown">
+          <button class="avatar-button" @click="toggleProfileDropdown" >
             <img :src="user.avatar" alt="User Avatar" class="avatar" />
             <span class="user-name">{{ user.name }}</span>
             <i class="pi pi-caret-down"></i>
