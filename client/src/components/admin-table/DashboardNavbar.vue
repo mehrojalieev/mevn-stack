@@ -1,10 +1,8 @@
 <script setup lang="ts">
-import { ref, onMounted, watch } from "vue";
-import {  useRoute } from "vue-router"; 
+import { ref } from "vue";
 import UzFlag from "../../assets/images/UzbFlag.svg";
 import RuFlag from "../../assets/images/RusFlag.svg";
 import EngFlag from "../../assets/images/EngFlag.svg";
-import BreadCrumb from "primevue/breadcrumb"; 
 import VerifyRole from "../../helpers/verify-role";
 
 const selectedLanguage = ref("EN");
