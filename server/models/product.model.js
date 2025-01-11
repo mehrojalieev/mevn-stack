@@ -2,7 +2,7 @@ const mongoose = require("mongoose")
 
 
 const productSchema = new mongoose.Schema({
-    title: {
+    model: {
         required: true,
         type: String
     },
@@ -32,7 +32,6 @@ const productSchema = new mongoose.Schema({
     }
     
 })
-
 
 
 const ProductSchema = mongoose.model('products', productSchema)
