@@ -17,15 +17,6 @@ import UserTr from './UserTr.vue';
         }
     })
 
-
-      
-
-    const statusList = ["INSTOCK",  "OUTOFSTOCK", "LIMITED", "COMINGSOON", "DISCONTINUED"];
-
-function getRandomStatus() {
-    return statusList[Math.floor(Math.random() * statusList.length)];
-}
-
     
 </script>
 
@@ -44,7 +35,7 @@ function getRandomStatus() {
             </tr>
           </thead>
           <tbody>
-            <ProductTr v-if="type === 'product'" :isLoading="false" :no="index + 1" :status="getRandomStatus()" :product="product as any" v-for="(product, index) in props.data" :key="`product-${index}`"/>
+            <ProductTr v-if="type === 'product'" :isLoading="false" :no="index + 1"  :product="product as any" v-for="(product, index) in props.data" :key="`product-${index}`"/>
             <UserTr v-else-if="type === 'users'" :isLoading="false" :user="user as any" v-for="(user, index) in props.data" :key="`user-${index}`"/>
           </tbody>
         </table>

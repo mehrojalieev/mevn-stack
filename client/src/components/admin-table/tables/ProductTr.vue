@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from 'vue';
+
 import {Modal} from 'ant-design-vue'
 import { ExclamationCircleOutlined } from '@ant-design/icons-vue';
 import { createVNode } from 'vue';
@@ -13,32 +13,13 @@ const props = defineProps({
     type: Boolean,
     required: true,
   },
-  status: {
-        type: String,
-        required: true,
-    },
     no: {
       type: Number,
       default: 0
     }
 });
 
-const statusClass = computed(() => {
-    switch (props.status) {
-        case "INSTOCK":
-            return "text-success";
-        case "OUTOFSTOCK":
-            return "text-danger";
-        case "LIMITED":
-            return "text-warning";
-        case "COMINGSOON":
-            return "text-info";
-        case "DISCONTINUED":
-            return "text-muted";
-        default:
-            return "";
-    }
-});
+
 
 
 const handleEdit = (product: any) => {
@@ -47,9 +28,6 @@ const handleEdit = (product: any) => {
 
 const handleDelete = (product: any) => {
   console.log(`Deleting product: ${product.title}`);
-  // return new Promise((resolve, reject) => {
-  //       setTimeout(Math.random() > 0.5 ? resolve : reject, 800);
-  //     }).catch(() => console.log('Oops errors!'));
 };
 
 
@@ -78,7 +56,7 @@ const showConfirm = () => {
     <td>{{ product.category }}</td>
     <td>{{ product.price }}</td>
     <td>{{ product.stock }}</td>
-    <td  class="product-status"><button :class="statusClass" class="status-btn" >{{ product.discount }}</button></td>
+    <td  class="product-status"><button  class="status-btn" >{{ product.discount }}</button></td>
     <td>
       <n-image width="50" height="50" :src="product.colors ? product?.colors[0]?.images[0] : 'https://img.freepik.com/premium-vector/m-letter-logo-design_1159859-5474.jpg'" loading="lazy"  alt="Product Image" />
     </td>
@@ -117,7 +95,6 @@ const showConfirm = () => {
       justify-content: center;
       align-items: center;
       height: 61px !important;
-      /* width: fit-content; */
       @include f-style(15px, 500, var(--light-color));
       .status-btn{
         border-radius: 6px;
@@ -130,9 +107,6 @@ const showConfirm = () => {
     .row-actions{
           padding: 1rem !important;
           vertical-align: middle !important;
-          /* display: flex; */
-          align-items: center;
-          /* justify-content: center; */
           height: 40px !important;
           column-gap: 10px;
           .action-btn{
