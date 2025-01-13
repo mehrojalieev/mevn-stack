@@ -5,6 +5,7 @@
   padding: 0;
   box-sizing: border-box;
   font-family: "Poppins", serif;
+  transition: .3s ease;
 }
 
 :root{
@@ -16,6 +17,13 @@
   --secondary-color: #BAC4D1;
   --danger-color: #ff0000;
   --warning-color: #ffcc00e5;
+}
+
+.container{
+  width: 100%;
+  max-width: 1250px;
+  padding:  20px;
+  margin: 0 auto;
 }
 
 a{
