@@ -33,6 +33,23 @@ router.get('/:id', async (req, res) => {
 })
 
 
+router.put("/update/:id", verify_admin, async (req, res) => {
+    try { 
+        const updatedProduct = await ProductSchema.findByIdAndUpdate(req.params.id, req.body, {new: true});
+        if(!updatedProduct){
+            return res.status(404).json({message: "Product not found"})
+        }
+        res.status(200).json({
+            status: 200,
+            message: "Product updated successfully!",
+            data: updatedProduct
+        })
+    } 
+    catch (error) {
+        res.status(500).json({message: error.message})    
+    }
+})
+
 
 router.delete('/delete/:id', verify_admin, async (req, res) => {
     const productId = req.params.id;
