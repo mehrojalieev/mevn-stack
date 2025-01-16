@@ -16,13 +16,14 @@ const userMenu = [
 
 const menu = role === "admin" ? adminMenu : userMenu;
 
+
 </script>
 
 
 <template>
     <aside class="sidebar">
         <div class="sidebar-header">
-            <RouterLink to="/dashboard" class="sidebar-logo">Dashboard</RouterLink>
+            <RouterLink to="/dashboard/" class="sidebar-logo">Dashboard</RouterLink>
         </div>
         <div class="sidebar__lists-menu">
             <ul class="menu-list">

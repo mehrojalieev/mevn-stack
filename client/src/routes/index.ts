@@ -38,7 +38,7 @@ const routes = createRouter({
                         {
                             path: 'products',
                             name: "Products",
-                            component: () => import('../views/admin-dashboard/admin-routes/AllProducts.vue')
+                            component: () => import('../views/admin-dashboard/admin-routes/ManageProducts.vue')
                         },
                         {
                             path: 'users',
@@ -58,7 +58,18 @@ const routes = createRouter({
             path: "/products",
             name: "Products",
             component: () => import("../components/AllProducts.vue")
-        }
+        },
+        {
+            path: "/cart",
+            name: "Cart",
+            component: () => import("../views/Cart.vue")
+        },
+        {
+            path: "/favorite",
+            name: "Favorite",
+            component: () => import("../views/Favorite.vue")
+        },
+
     ]
 })
 
