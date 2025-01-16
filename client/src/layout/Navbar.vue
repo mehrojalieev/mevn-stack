@@ -5,11 +5,13 @@ import VerifyRole from '../helpers/verify-role';
 
     const inputValue = ref<string>("")
     const route = useRoute()
-    const token = localStorage.getItem("token")
+    const token: string | null = localStorage.getItem("token") || null;
 
-   const showNavbar = computed(() => !["auth", "dashboard"].some(path => route.path.includes(path)));
-   const userData = VerifyRole(token)
-   console.log(userData);
+    const userData: any = token && VerifyRole(token)
+
+   const showNavbar = computed(() =>
+    !["auth", "dashboard"].some(path => route.path.includes(path))
+);
    
 </script>
 
@@ -38,7 +40,7 @@ import VerifyRole from '../helpers/verify-role';
                 <i class="pi pi-heart"></i>
                 <p>Favorite</p>
             </router-link>
-            <router-link  class="auth-link" v-if="userData" :to="`${userData.role === 'user' ? 'dashboard/user' : 'dashboard/admin'}`">
+            <router-link  class="auth-link" v-if="userData" :to="`${userData?.role === 'user' ? 'dashboard/user' : 'dashboard/admin'}`">
                 <i class="pi pi-user"></i>
                 <p>Account</p>
             </router-link>

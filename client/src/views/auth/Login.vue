@@ -30,11 +30,11 @@ const handlePasswordShow = () => {
       })
       
       if(response.data.token){
-        localStorage.setItem('token', response.data.token);
+        localStorage.setItem('token', response?.data?.token);
         isLoading.value = false
-        const role = VerifyRole(response.data.token)
+        const UserData: any = VerifyRole(response?.data?.token)
         
-        const targetPath = role === 'admin' ? '/dashboard/admin' : '/dashboard/user'
+        const targetPath = UserData.role === 'admin' ? '/dashboard/admin' : '/dashboard/user'
         router.push(targetPath);
       }
     } 

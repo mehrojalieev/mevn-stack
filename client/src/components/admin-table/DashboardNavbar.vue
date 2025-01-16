@@ -45,12 +45,13 @@ const toggleProfileDropdown = () => {
   profileDropdown.value = !profileDropdown.value;
 };
 
-const UserData = VerifyRole(userToken)
+const UserData:any = VerifyRole(userToken as string)
 
 
-const handleAction = (action: string) => {
-  console.log(`Action selected: ${action}`);
+const handleAction = () => {
+  localStorage.removeItem("token")
   profileDropdown.value = false;
+  window.location.reload()
 };
 
 
@@ -95,15 +96,15 @@ const handleAction = (action: string) => {
           </button>
     
           <ul class="dropdown" v-if="profileDropdown">
-            <li class="dropdown-item" @click="handleAction('profile')">
+            <li class="dropdown-item" @click="handleAction">
               <i class="pi pi-user"></i>
               View Profile
             </li>
-            <li class="dropdown-item" @click="handleAction('settings')">
+            <li class="dropdown-item" @click="handleAction">
               <i class="pi pi-cog"></i>
               Settings
             </li>
-            <li class="dropdown-item" @click="handleAction('logout')">
+            <li class="dropdown-item" @click="handleAction">
               <i class="pi pi-sign-out"></i>
               Logout
             </li>

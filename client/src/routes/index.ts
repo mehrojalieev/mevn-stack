@@ -65,9 +65,9 @@ const routes = createRouter({
             component: () => import("../views/Cart.vue")
         },
         {
-            path: "/favorite",
-            name: "Favorite",
-            component: () => import("../views/Favorite.vue")
+            path: "/like",
+            name: "Like",
+            component: () => import("../views/Like.vue")
         },
 
     ]
