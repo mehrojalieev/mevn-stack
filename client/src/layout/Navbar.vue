@@ -1,14 +1,23 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
+import { useRoute } from 'vue-router';
+import VerifyRole from '../helpers/verify-role';
 
     const inputValue = ref<string>("")
+    const route = useRoute()
+    const token = localStorage.getItem("token")
+
+   const showNavbar = computed(() => !["auth", "dashboard"].some(path => route.path.includes(path)));
+   const userData = VerifyRole(token)
+   console.log(userData);
+   
 </script>
 
 <template>
-    <nav class="container">
-        <div class="nav-logo">
+    <nav v-if="showNavbar" class="container">
+        <router-link to="/" class="nav-logo">
             <img src="https://i.pinimg.com/736x/e6/98/2b/e6982b10ffccfe16a6e3fc9b6f7adadc.jpg" alt="">
-        </div>
+        </router-link>
         <div class="nav__forms-wrapper">
             <div class="category-card">
                 <i class="pi pi-bars"></i>
@@ -21,15 +30,19 @@ import { ref } from 'vue';
             </form>
         </div>
         <div class="nav-actions">
-            <router-link to="/cart" class="action-link">
+            <router-link active-class="link-active" to="/cart" class="action-link">
                 <i class="pi pi-shopping-cart"></i>
                 <p>Cart</p>
             </router-link>
-            <router-link to="/like" class="action-link">
+            <router-link active-class="link-active" to="/like" class="action-link">
                 <i class="pi pi-heart"></i>
                 <p>Favorite</p>
             </router-link>
-            <router-link to="/login" class="auth-link">
+            <router-link  class="auth-link" v-if="userData" :to="`${userData.role === 'user' ? 'dashboard/user' : 'dashboard/admin'}`">
+                <i class="pi pi-user"></i>
+                <p>Account</p>
+            </router-link>
+            <router-link v-else to="/auth/login" class="auth-link">
                 <i class="pi pi-sign-in"></i>
                 <p>Login</p>
             </router-link>
@@ -148,15 +161,23 @@ import { ref } from 'vue';
             justify-content: center;
             column-gap: 10px;
             background-color: var(--primary-success);
-            padding: 10px 20px;
+            padding: 9px 18px;
             border-radius: 6px;
             i{
-            @include f-style(16px, 500, var(--light-color) );
+            @include f-style(15px, 500, var(--light-color) );
             }
             p{
             @include f-style(15px, 500, var(--light-color) );
             letter-spacing: .7px;
             }
+        }
+    }
+
+    .router-link-exact-active{
+        background: transparent !important;
+        i, p{
+            color: var(--primary-success) !important;
+            font-weight: 600;
         }
     }
 

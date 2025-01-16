@@ -12,7 +12,7 @@ const props = defineProps({
     <div class="image">
       <img :src="product.colors[0].images[0]" :alt="product.model" />
     </div>
-    <h4 class="product-model">{{ product.model }}</h4>
+    <h4 class="product-model">{{ product.model.slice(0,20) }}</h4>
     <div class="price-item">
       <span class="discount-price" v-if="product.discount > 0">
         ${{ (product.price - product.price * (product.discount / 100)).toFixed(2) }}
@@ -35,7 +35,7 @@ const props = defineProps({
 
 .product-card {
   width: 100%;
-  max-width: 250px;
+  max-width: 230px;
   padding: 15px;
   border: 1px solid var(--light-color);
   border-radius: 8px;
@@ -43,42 +43,42 @@ const props = defineProps({
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 
-  &:hover {
-    transform: scale(1.05);
+  &:hover  {
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    img {
+      transform: scale(1.04);
+    }
+
   }
 
   .image {
     width: 100%;
-    height: 220px;
+    height: 170px;
     margin-bottom: 1rem;
-    overflow: hidden;
+    /* overflow: hidden; */
     border-radius: 6px;
     cursor: pointer;
     transition: transform 0.3s ease;
 
-    &:hover {
-      transform: scale(1.1);
-    }
 
     img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain;
       border-radius: 6px;
     }
   }
 
   .product-model {
     @include f-style(16px, 600, var(--dark-color));
-    text-align: center;
     margin: 0.5rem 0;
   }
 
   .price-item {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
+    height: 40px;
     margin-top: 0.5rem;
 
     strong {
@@ -93,21 +93,17 @@ const props = defineProps({
   }
 
   .add-to-cart-btn {
+    @include f-style(14px, 500, var(--light-color));
     width: 100%;
-    padding: 10px;
-    margin-top: 1rem;
+    letter-spacing: .5px;
+    padding: 8px;
+    margin-top: 1.2rem;
     border: none;
     border-radius: 6px;
     background-color: var(--primary-success);
-    color: var(--light-color);
-    font-weight: 600;
     text-align: center;
     cursor: pointer;
     transition: background-color 0.3s ease;
-
-    /* &:hover {
-      background-color: darken(var(--primary-success), 10%);
-    } */
   }
 }
 
