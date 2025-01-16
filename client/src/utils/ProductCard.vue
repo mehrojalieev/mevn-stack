@@ -1,10 +1,26 @@
 <script setup lang="ts">
+import { useStore } from '../store/store';
+
 const props = defineProps({
   product: {
     type: Object,
     required: true
   }
 });
+
+const store: any = useStore()
+
+const handleAddToCart = (current_product: any) => {
+  const ExtraProduct = {...current_product, count: 1}
+  store.ProductAddToCart(ExtraProduct)
+}
+
+const handleRemoveProduct = (current_product: any) => {
+  let ExtraProduct = {...current_product}
+  ExtraProduct = {...current_product}
+  store.RemoveProductFromCart(ExtraProduct)
+}
+
 </script>
 
 <template>
@@ -19,7 +35,12 @@ const props = defineProps({
       </span>
       <strong>${{ product.price.toFixed(2) }}</strong>
     </div>
-    <button class="add-to-cart-btn">Add to Cart</button>
+    <div v-if="store.$state.cart_data.findIndex((f: any) => f?._id === props.product?._id ) != -1" class="couter-action">
+        <button class="remove-btn" @click="handleRemoveProduct(props.product)">-</button>
+        <strong>{{ store.$state.cart_data?.find((ind: any) => ind?._id === props.product?._id)?.count }}</strong>
+        <button class="plus-btn" @click="handleAddToCart(props.product)">+</button>
+    </div>
+    <button v-else @click="handleAddToCart(props.product)" class="add-to-cart-btn">Add to Cart</button>
   </div>
   <div v-else class="skeleton-card">
     <n-skeleton size="large" :sharp="false" width="100%" height="200px" :repeat="5" />
@@ -104,6 +125,26 @@ const props = defineProps({
     text-align: center;
     cursor: pointer;
     transition: background-color 0.3s ease;
+  }
+  .couter-action{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    background-color: var(--primary-success);
+    border-radius: 6px;
+    margin-top: 1.2rem;
+    justify-content: space-evenly;
+    padding:  4px 0;
+    strong{
+      @include f-style(20px, 400, var(--light-color) );
+    }
+    button{
+      background: transparent;
+      @include f-style(20px, 400, var(--light-color) );
+    }
+    .remove-btn:active, .plus-btn:active{
+      transform: scale(0.8);
+    }
   }
 }
 

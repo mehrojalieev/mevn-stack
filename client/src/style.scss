@@ -94,26 +94,26 @@ button{
 
 
 .text-success {
-  background-color: #28a745 !important; /* Green for INSTOCK */
+  background-color: #28a745 !important; 
   font-weight: bold !important;
 }
 
 .text-danger {
-  background-color: #dc3545 !important; /* Red for OUTOFSTOCK */
+  background-color: #dc3545 !important; 
   font-weight: bold;
 }
 
 .text-warning {
-  background-color: #ffc107 !important; /* Yellow for LIMITED */
+  background-color: #ffc107 !important; 
   font-weight: bold;
 }
 
 .text-info {
-  background-color: #17a2b8 !important; /* Blue for COMINGSOON */
+  background-color: #17a2b8 !important;
   font-weight: bold;
 }
 
 .text-muted {
-  background-color: #6c757d !important; /* Grey for DISCONTINUED */
+  background-color: #6c757d !important; 
   font-style: italic;
 }
