@@ -2,8 +2,10 @@
 import { computed, ref } from 'vue';
 import { useRoute } from 'vue-router';
 import VerifyRole from '../helpers/verify-role';
+import { useStore } from '../store/store';
 
     const inputValue = ref<string>("")
+    const store = useStore()
     const route = useRoute()
     const token: string | null = localStorage.getItem("token") || null;
 
@@ -33,6 +35,7 @@ import VerifyRole from '../helpers/verify-role';
         </div>
         <div class="nav-actions">
             <router-link active-class="link-active" to="/cart" class="action-link">
+                <strong class="cart__item-counts">{{ store.$state.cart_data.length > 0 ? store.$state.cart_data.length : 0 }}</strong>
                 <i class="pi pi-shopping-cart"></i>
                 <p>Cart</p>
             </router-link>
@@ -140,10 +143,23 @@ import VerifyRole from '../helpers/verify-role';
         align-items: center;
         column-gap: 2.3rem;
         .action-link{
+            position: relative;
             display: flex;
             flex-direction: column;
             row-gap: 5px;
             text-align  : center;
+            .cart__item-counts{
+                position: absolute;
+                background-color: var(--danger-color);
+                border-radius: 50%;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center;
+                padding: 1px  6px 0 ;
+                right: -5px;
+                top: -12px;
+                @include f-style(12px, 500, var(--light-color) )
+            }
             &:hover{
                 i,p{
                     color: var(--primary-success);

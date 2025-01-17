@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import { useStore } from '../store/store';
+import { useNotification } from 'naive-ui'
+
+
 
 const props = defineProps({
   product: {
@@ -9,10 +12,12 @@ const props = defineProps({
 });
 
 const store: any = useStore()
+const notification = useNotification()
 
 const handleAddToCart = (current_product: any) => {
   const ExtraProduct = {...current_product, count: 1}
   store.ProductAddToCart(ExtraProduct)
+  showNotification(current_product?.model, "added")
 }
 
 const handleRemoveProduct = (current_product: any) => {
@@ -21,10 +26,34 @@ const handleRemoveProduct = (current_product: any) => {
   store.RemoveProductFromCart(ExtraProduct)
 }
 
+
+const handleAddToLIke = (liked_product: any) => {
+  store.ProductAddToLike(liked_product)
+  if(liked_product){
+    showNotification(liked_product, "liked")
+  }
+}
+
+const handleUnlikeProduct = (unliked_product: any) => {
+  store.RemoveProductFromLike(unliked_product)
+}
+
+const showNotification = (model: string, action: string) => {
+  const actionText: string = action === "added" ? "savatga qo'shildi" : "sevimliga qo'shildi"
+     notification.success({
+      duration: 2000,
+      title: "Toval " + actionText,
+      description: model.slice(0,25) + '...',
+      
+    })
+  }
+
 </script>
 
 <template>
   <div v-if="product" class="product-card">
+    <button   v-if="store.$state.like_cart.findIndex((f: any) => f?._id === props.product?._id ) !== -1" @click="handleUnlikeProduct(props.product)"  class="pi pi-heart-fill like-btn"></button>
+    <button v-else @click="handleAddToLIke(props.product)"   class="pi pi-heart like-btn"></button>
     <div class="image">
       <img :src="product.colors[0].images[0]" :alt="product.model" />
     </div>
@@ -55,6 +84,7 @@ const handleRemoveProduct = (current_product: any) => {
 }
 
 .product-card {
+  position: relative;
   width: 100%;
   max-width: 230px;
   padding: 15px;
@@ -63,28 +93,39 @@ const handleRemoveProduct = (current_product: any) => {
   background-color: var(--light-color);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-
   &:hover  {
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-    img {
-      transform: scale(1.04);
-    }
+  } 
 
+  .like-btn{
+    z-index: 10;
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    background: transparent;
+    @include f-style(22px, 400, var(--secondary-color) );
+    &:hover{
+      transform: scale(1.1);
+    }
+    &:active{
+      transform: scale(.95);
+    }
   }
 
   .image {
     width: 100%;
     height: 170px;
     margin-bottom: 1rem;
-    /* overflow: hidden; */
+    overflow: hidden;
     border-radius: 6px;
     cursor: pointer;
-    transition: transform 0.3s ease;
+    transition: transform 0.2s ease;
 
-
+    padding: 6px 0;
     img {
       width: 100%;
       height: 100%;
+      
       object-fit: contain;
       border-radius: 6px;
     }
