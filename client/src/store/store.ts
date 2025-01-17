@@ -2,7 +2,8 @@ import {defineStore} from "pinia"
 
 export const useStore = defineStore("products", {
     state: () => ({
-        cart_data: []
+        cart_data: [],
+        like_cart: []
     }),
     actions:{
         ProductAddToCart(product: any){            
@@ -24,6 +25,15 @@ export const useStore = defineStore("products", {
                     this.cart_data.splice(productExistIndex, 1)
                 }
             }
+        },
+        ProductAddToLike(product: any){
+            if(!this.like_cart.some((item: any) => item._id === product._id)){
+                (this.like_cart as any[]).push(product)
+            }
+        },
+        RemoveProductFromLike(product: any){
+            this.like_cart = this.like_cart.filter((item: any) => item._id !== product._id)
         }
+
     }
 })

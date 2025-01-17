@@ -16,7 +16,7 @@
         color: $color;
 }
         .empty__cart-wrapper{
-            margin-top: 2rem;
+            margin-top: 3.5rem;
             width: 100%;
             display: flex;
             flex-direction: column;
@@ -25,12 +25,12 @@
             gap: 1rem;
             img{
                 width: 100%;
-                max-width: 470px;
+                max-width: 460px;
                 height: 280px;
                 object-fit: contain;
             }
             h5{
-                @include f-style(32px, 500, var(--secondary-dark-color));
+                @include f-style(30px, 500, var(--secondary-dark-color));
                 letter-spacing: .5px;
             }
         }
