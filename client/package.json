@@ -16,7 +16,7 @@
     "ant-design-vue": "^4.2.6",
     "axios": "^1.7.9",
     "bootstrap": "^5.3.3",
-    "bootstrap-vue": "^1.5.1",
+    "bootstrap-vue": "^2.23.1",
     "jwt-decode": "^4.0.0",
     "oh-vue-icons": "^1.0.0-rc3",
     "pinia": "^2.3.0",
