@@ -4,8 +4,11 @@ import { useRouter } from 'vue-router';
 import ApiInstance from '../../services/api';
 import Button from '../../utils/Button.vue';
 import VerifyRole from '../../helpers/verify-role';
+import { useStorage } from '../../hooks/useStorage';
 
 const router = useRouter();
+
+const [_, setToken ] = useStorage("token", "local")
 
 const focusState = ref<{ email: boolean; password: boolean }>({
   email: false,
@@ -30,7 +33,7 @@ const handlePasswordShow = () => {
       })
       
       if(response.data.token){
-        localStorage.setItem('token', response?.data?.token);
+        setToken(response?.data.token)
         isLoading.value = false
         const UserData: any = VerifyRole(response?.data?.token)
         
