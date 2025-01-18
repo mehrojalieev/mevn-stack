@@ -14,7 +14,6 @@ const getItem = (key: string, storage: Storage): any => {
 export const useStorage = (key: any, type: any = 'session'): [Ref<any>, (newValue: any) => void] => {
 
   const storage = type === "local" ? localStorage : sessionStorage;
- 
 
   const value = ref(getItem(key, storage));
 
