@@ -3,7 +3,7 @@ import { useStore } from '../store/store';
 import CardOfCart from '../utils/CardOfCart.vue';
 
     const store = useStore()
-    console.log(store);
+    console.log(store.$state.cart_data);
     
 </script>
 
