@@ -35,5 +35,16 @@ export const useStore = defineStore("products", {
             this.like_cart = this.like_cart.filter((item: any) => item._id !== product._id)
         }
 
-    }
+    },
+    persist: true
+    // {
+    //     enabled: true,
+    //     strategies:[
+    //         {
+    //             key: "products",
+    //             storage: localStorage,
+    //             paths: ["cart_data", "like_cart"]
+    //         }
+    //     ]
+    // }
 })
