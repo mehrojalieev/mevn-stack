@@ -36,6 +36,7 @@ const handleRemoveProduct = (current_product: any) => {
             dialogInstance.loading = true
             try {
                 await new Promise((resolve) => setTimeout(resolve, 1000));
+                store.RemoveProductFromCart(removingItem)
                 message.success(`Item "${removingItem.model.slice(0, 25)}..." removed successfully.`);
             } catch (error) {
                 message.error("Failed to remove the item. Please try again.");
@@ -67,8 +68,8 @@ const handleRemoveProduct = (current_product: any) => {
                 <strong>Price: {{ product.price }}$</strong>
                 <strong>Brand: {{ product.brand }}</strong>
                 <div class="count-action">
-                    <button class="remove-btn" @click="handleRemoveProduct(props.product)">-</button>
-                    <strong>{{ store.$state.cart_data?.find((ind: any) => ind?._id === props.product?._id)?.count  }}11</strong>
+                    <button class="remove-btn" @click="handleRemoveProduct(props.product)" :disabled="store.$state.cart_data?.find((ind: any) => ind?._id === props.product?._id)?.count === 1">-</button>
+                    <strong>{{ store.$state.cart_data?.find((ind: any) => ind?._id === props.product?._id)?.count  }}</strong>
                      <button class="plus-btn" @click="handleAddToCart(props.product)">+</button>
                 </div>
             </div>
