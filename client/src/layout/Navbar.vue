@@ -87,10 +87,10 @@ import { useStore } from '../store/store';
         column-gap: 1.3rem;
         width: 100%;
         .category-card{
-            height: 42px;
+            height: 40px;
             max-width: 140px;
             width: 100%;
-            padding: 10px;
+            padding: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -125,9 +125,9 @@ import { useStore } from '../store/store';
             }
             .search-btn{
                 height: 100%;
-                padding: 0 .8rem;
+                padding: 0 .7rem;
                 background-color: var(--primary-success);
-                @include f-style(16px, 400, var(--light-color) )
+                @include f-style(15px, 400, var(--light-color) )
             }
             .clear__input-btn{
                 margin: 0 10px;
@@ -179,8 +179,11 @@ import { useStore } from '../store/store';
             justify-content: center;
             column-gap: 10px;
             background-color: var(--primary-success);
-            padding: 9px 18px;
+            padding: 8px 16px;
             border-radius: 6px;
+            &:hover{
+                opacity: 0.8;
+            }
             i{
             @include f-style(15px, 500, var(--light-color) );
             }

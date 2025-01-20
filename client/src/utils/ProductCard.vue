@@ -3,7 +3,6 @@ import { useStore } from '../store/store';
 import { useNotification } from 'naive-ui'
 
 
-
 const props = defineProps({
   product: {
     type: Object,
@@ -16,8 +15,13 @@ const notification = useNotification()
 
 const handleAddToCart = (current_product: any) => {
   const ExtraProduct = {...current_product, count: 1}
+
+  const isProductInCart =  store.$state.cart_data.some((item: any) => item._id === current_product._id);
+
+  if(!isProductInCart){
+    showNotification(current_product?.model, "added")
+  }
   store.ProductAddToCart(ExtraProduct)
-  showNotification(current_product?.model, "added")
 }
 
 const handleRemoveProduct = (current_product: any) => {
@@ -44,7 +48,6 @@ const showNotification = (model: string, action: string) => {
       duration: 2000,
       title: "Toval " + actionText,
       description: model.slice(0,25) + '...',
-      
     })
   }
 
@@ -52,8 +55,8 @@ const showNotification = (model: string, action: string) => {
 
 <template>
   <div v-if="product" class="product-card">
-    <button   v-if="store.$state.like_cart.findIndex((f: any) => f?._id === props.product?._id ) !== -1" @click="handleUnlikeProduct(props.product)"  class="pi pi-heart-fill like-btn"></button>
-    <button v-else @click="handleAddToLIke(props.product)"   class="pi pi-heart like-btn"></button>
+    <button   v-if="store.$state.like_cart.findIndex((f: any) => f?._id === props.product?._id ) !== -1" @click="handleUnlikeProduct(props.product)"  class="pi pi-heart-fill like-btn liked-btn"></button>
+    <button v-else @click="handleAddToLIke(props.product)"   class="pi pi-heart like-btn "></button>
     <div class="image">
       <img :src="product.colors[0].images[0]" :alt="product.model" />
     </div>
@@ -110,6 +113,10 @@ const showNotification = (model: string, action: string) => {
     &:active{
       transform: scale(.95);
     }
+  }
+
+  .liked-btn{
+    color: var(--danger-color);
   }
 
   .image {
