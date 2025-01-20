@@ -16,7 +16,7 @@ import CardOfCart from '../utils/CardOfCart.vue';
                 <p class="cart__items-total">{{ store?.$state.cart_data?.length }} {{ store?.$state.cart_data?.length > 1 ? 'products' : 'product' }}</p>
             </header>
             <div class="cart__items-wrapper">
-                <CardOfCart v-for="(product, index) in store.$state.cart_data" :prodoct="product"  :key="index"/>
+                <CardOfCart v-for="(product, index) in store.$state.cart_data" :product="product"  :key="index"/>
             </div>
         </div>
         <div v-else class="empty__cart-wrapper">
@@ -35,6 +35,7 @@ import CardOfCart from '../utils/CardOfCart.vue';
 
 .cart{
     margin-top: 2rem;
+    margin-bottom: 1.6rem;
 }
 .cart-header{
     display: flex;

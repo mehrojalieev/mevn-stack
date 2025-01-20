@@ -14,8 +14,12 @@ useNetworkStatus((status) => {
 
 <template>
     <n-notification-provider placement="top">
-        <Navbar/>
-        <RouterView/>
+        <n-dialog-provider>
+        <n-message-provider>
+            <Navbar/>
+            <RouterView/>
+        </n-message-provider>
+        </n-dialog-provider>
     </n-notification-provider>
 </template>
 
