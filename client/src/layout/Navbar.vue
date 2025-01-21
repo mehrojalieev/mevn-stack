@@ -155,7 +155,7 @@ import { useStore } from '../store/store';
                 display: flex !important;
                 align-items: center !important;
                 justify-content: center;
-                padding: 1px  6px 0 ;
+                padding: 1px  8px 0 ;
                 right: -5px;
                 top: -12px;
                 @include f-style(12px, 500, var(--light-color) )

@@ -123,16 +123,16 @@ const handleRemoveProduct = (current_product: any) => {
             flex-direction: column;
             justify-content: center;
             .model-text{
-                @include f-style(15px, 500, var(--dark-color) );
+                @include f-style(16px, 500, var(--dark-color) );
                 margin-bottom: 10px;
             }
             strong{
-                @include f-style(14px, 500, var(--secondary-dark-color) )
+                @include f-style(15px, 500, var(--secondary-dark-color) )
             }
             .count-action{
                 display: flex;
                 align-items: center;
-                column-gap: 10px;
+                column-gap: 20px;
                 width: fit-content;
                 background: #dddcdc71;
                 border-radius: 6px;
@@ -141,7 +141,7 @@ const handleRemoveProduct = (current_product: any) => {
                 margin-left: 1rem;
                 button{
                     background: transparent;
-                    @include f-style(20px, 400, var(--dark-color) )
+                    @include f-style(22px, 400, var(--dark-color) )
                 }
                 strong{
                     @include f-style(15px, 500, var(--dark-color) )
