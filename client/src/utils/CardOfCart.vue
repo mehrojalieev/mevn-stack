@@ -94,8 +94,8 @@ const handleRemoveProduct = (current_product: any) => {
         column-gap: 1.5rem;
         margin-top: 1rem;
 
-        max-width: 850px;
-        width: 100%;
+        max-width: 850px !important;
+        width: 100% !important;
         padding: 10px;
         border-radius: 6px;
         border: 1px solid var(--secondary-color);
