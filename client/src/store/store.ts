@@ -36,6 +36,10 @@ export const useStore = defineStore("products", {
         }
 
     },
+    getters:{
+        cartTotal: (state) => state.cart_data.reduce((total: number, item: any) => total + item.price * (item.count || 1), 0),
+        productCount: (state) => state.cart_data.reduce((total, item: any) => total + (item.count || 0), 0)
+    },
     persist: true
     // {
     //     enabled: true,

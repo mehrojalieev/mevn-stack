@@ -1,8 +1,11 @@
 <script setup lang="ts">
+import { ref } from 'vue';
 import { useStore } from '../store/store';
+import Button from '../utils/Button.vue';
 import CardOfCart from '../utils/CardOfCart.vue';
 
     const store = useStore()
+    const isLoading = ref<boolean>(false)
     
 </script>
 
@@ -23,7 +26,7 @@ import CardOfCart from '../utils/CardOfCart.vue';
                         <div class="box__header-actions">
                             <div class="action-item total-item">
                                 <h6>Total</h6>
-                                <p>600000</p>
+                                <p>${{ store.cartTotal }}</p>
                             </div>
                             <div class="action-item ">
                                 <h6>Items number</h6>
@@ -36,7 +39,7 @@ import CardOfCart from '../utils/CardOfCart.vue';
                         </div>
 
                         <div class="action-btns">
-                            <button></button>
+                            <Button text="To'lov qilish" :loading="isLoading"/>
                         </div>
             </div>
         </div>
@@ -62,6 +65,9 @@ import CardOfCart from '../utils/CardOfCart.vue';
     margin-top: 2rem;
     margin-bottom: 1.6rem;
 }
+.cart-wrapper{
+    width: 100%;
+}
 .cart-header{
     display: flex;
     align-items: center;
@@ -72,6 +78,10 @@ import CardOfCart from '../utils/CardOfCart.vue';
     .cart__items-total{
         @include f-style(28px, 500, var(--secondary-dark-color))
     }
+}
+
+.cart__items-wrapper{
+    width: 100%;
 }
 
 
@@ -91,7 +101,7 @@ import CardOfCart from '../utils/CardOfCart.vue';
             text-align: left;
             display: flex;
             align-items: center;
-            width: 90%;
+            width: 100%;
             justify-content: space-between;
             margin-bottom: 5px;
             h6{
@@ -111,6 +121,9 @@ import CardOfCart from '../utils/CardOfCart.vue';
                 @include f-style(20px, 500, var(--dark-color) );
             }
         }
+    }
+    .action-btns{
+        text-align: center;
     }
 }
 
