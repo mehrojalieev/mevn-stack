@@ -60,7 +60,7 @@ const handleRemoveProduct = (current_product: any) => {
     <div class="cart__product-card">
         <n-checkbox class="checkbox-btn" size="large"  />
         <div class="product-info">  
-            <router-link :to="`product/${product._id}`" >
+            <router-link :to="`product/${product._id}`" class="image-link" >
                 <img class="card-image" :src="props.product.colors[0].images[0]" alt="">
             </router-link>
             <div class="info-content">
@@ -93,25 +93,32 @@ const handleRemoveProduct = (current_product: any) => {
         justify-content: space-between;
         column-gap: 1.5rem;
         margin-top: 1rem;
-
         max-width: 850px !important;
         width: 100% !important;
-        padding: 10px;
+        padding: 12px 14px;
         border-radius: 6px;
-        border: 1px solid var(--secondary-color);
+        border: 1px solid var(--secondary-light-color);
         height: fit-content;
+        &:first-child{
+            margin-top: 0;
+        }
         .checkbox-btn{
             position: absolute;
             right: 2%;
             top: 8%;
         }
-        .card-image{
+        .image-link{
             max-width: 100px;
             width: 100%;
-            height: 84px;
-            object-fit: contain;
+            height: 90px;
+            img{
+                object-fit: contain;
+                width: 100%;
+                height: 100%;
+            }
         }
         .product-info{
+            width: 100%;
             display: flex;
             align-items: center;
             column-gap: 10px;
@@ -119,15 +126,17 @@ const handleRemoveProduct = (current_product: any) => {
 
         }
         .info-content{
+            width: 100%;
             display: flex;
             flex-direction: column;
             justify-content: center;
             .model-text{
-                @include f-style(16px, 500, var(--dark-color) );
+                @include f-style(15px, 400, var(--dark-color) );
                 margin-bottom: 10px;
+                line-height: 18px;
             }
             strong{
-                @include f-style(15px, 500, var(--secondary-dark-color) )
+                @include f-style(14px, 500, var(--secondary-dark-color) )
             }
             .count-action{
                 display: flex;

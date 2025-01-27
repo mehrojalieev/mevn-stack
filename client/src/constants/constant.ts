@@ -1,7 +1,5 @@
 const constant = Object.freeze({
     DASHBOARD_ROLES: ['ADMIN', 'USER']
-
-
 })
 
 
