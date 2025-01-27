@@ -11,6 +11,16 @@ const allProducts = async (req, res) => {
     }
 }
 
+const allCategories = async (req, res) => {
+    try {
+        const categories = await ProductSchema.distinct("category")
+        res.status(200).json(categories)
+    } 
+    catch (error) {
+        return res.status(500).json({message: error.message})    
+    }
+}
+
 const productById = async (req, res) => {
     try {
         const singleProduct = await ProductSchema.findById(req.params.id);
@@ -71,4 +81,4 @@ const updateProduct = async (req, res) => {
 }
 
 
-module.exports = { allProducts, productById, updateProduct, deleteProduct }
+module.exports = { allProducts, allCategories, productById, updateProduct, deleteProduct }
