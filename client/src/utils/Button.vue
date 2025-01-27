@@ -4,6 +4,10 @@ const props = defineProps({
         type: String,
         required: true
     },
+    buttonType:{
+      type: String,
+      required: true
+    },
     loading: {
         type: Boolean,
         required: false
@@ -13,7 +17,7 @@ const props = defineProps({
 </script>
 
 <template>
-    <button class="submit-btn" :disabled="props.loading">
+    <button :class="'btn-'+buttonType" class="submit-btn" :disabled="props.loading">
         <span v-if="props.loading" class="spinner"></span>
         <span v-else>{{ props.text }}</span>
     </button>
@@ -28,13 +32,12 @@ const props = defineProps({
 }
 
 .submit-btn {
-  margin-top: 1.5rem !important;
-  width: 100%;
+  width: 90%;
+  margin: 1.2rem auto 0 !important;
   border-radius: 6px;
-  height: 38px;
+  height: 45px;
   padding: 7px 0;
   @include f-style(15px, 500, var(--light-color));
-  background-color: var(--primary-success);
   border: none;
   cursor: pointer;
   display: flex;
@@ -50,6 +53,18 @@ const props = defineProps({
   }
 }
 
+.btn-primary{
+  background-color: var(--primary-success);
+}
+
+.btn-info{
+  background-color: var(--light-color);
+  color: var(--dark-color);
+  border: 2px solid var(--secondary-color) !important;
+  &:hover{
+    background-color: var(--primary-dark-color);
+  }
+}
 
 .spinner {
   border: 2px solid var(--light-color); 
