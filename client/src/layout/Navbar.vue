@@ -1,24 +1,61 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 import { useRoute } from 'vue-router';
 import VerifyRole from '../helpers/verify-role';
 import { useStore } from '../store/store';
+import ApiInstance from '../services/api';
+import { useI18n } from 'vue-i18n';
+
+const {t, locale} = useI18n()
 
     const inputValue = ref<string>("")
     const store = useStore()
     const route = useRoute()
     const token: string | null = localStorage.getItem("token") || null;
+    const allCategories = ref<string[]>([])
+    const isLoading = ref<boolean>(false)
 
     const userData: any = token && VerifyRole(token)
 
    const showNavbar = computed(() =>
     !["auth", "dashboard"].some(path => route.path.includes(path))
 );
+
+
+const renderCategories =  async ( ) => {
+    isLoading.value = true;
+    try {   
+        const res = await ApiInstance.get('/product/category/all')
+            allCategories.value = res.data
+    } 
+    catch (error) {
+        console.log(error);     
+    }
+    finally{
+        isLoading.value = false;
+    }
+}
+
+
+onMounted(() => {
+    renderCategories()
+})
+
+
+const changeLang = (event: Event | null) => {
+    locale.value = event.target.value
+}
    
 </script>
 
 <template>
     <nav v-if="showNavbar" class="container">
+        {{ $t('title') }}
+        <select @change="changeLang($event)" >
+            <option value="uz">UZ</option>
+            <option value="ru">RU</option>
+            <option value="en">EN</option>
+        </select>
         <router-link to="/" class="nav-logo">
             <img src="https://i.pinimg.com/736x/e6/98/2b/e6982b10ffccfe16a6e3fc9b6f7adadc.jpg" alt="">
         </router-link>
@@ -53,6 +90,9 @@ import { useStore } from '../store/store';
             </router-link>
         </div>
     </nav>
+    <div class="navbar-categories container" >
+        <router-link class="category-link" v-for="(category, index) in allCategories" :to="`category/${category.toLowerCase()}`" :key="index">{{ category }}</router-link>
+    </div>
 </template>
 
 
@@ -199,6 +239,15 @@ import { useStore } from '../store/store';
         i, p{
             color: var(--primary-success) !important;
             font-weight: 600;
+        }
+    }
+
+    .navbar-categories{
+        width: 100%;
+        align-items: center;
+        column-gap: 10px;
+        .category-link{
+            @include f-style(16px, 500, var(--secondary-dark-color))
         }
     }
 
