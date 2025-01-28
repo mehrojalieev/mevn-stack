@@ -8,6 +8,7 @@ import 'primeicons/primeicons.css'
 import "vue-toastification/dist/index.css";
 import {createPinia} from "pinia"
 import piniaPluginPersistedState from "pinia-plugin-persistedstate"
+import i18n from './i18n';
 
 
 const pinia = createPinia()
@@ -15,6 +16,7 @@ const pinia = createPinia()
 const app = createApp(App);
 pinia.use(piniaPluginPersistedState)
 
+app.use(i18n)
 app.use(routes);
 app.use(Toast);
 app.use(naive)

@@ -40,6 +40,7 @@ onMounted(() => {
     .products-wrapper{
         width: 100%;
         display: grid;
+        margin-top: 2rem;
         grid-template-columns: repeat(5, 1fr);
         place-items: center;
         gap: 1.4rem 1.2rem;
