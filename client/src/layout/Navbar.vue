@@ -5,8 +5,11 @@ import VerifyRole from '../helpers/verify-role';
 import { useStore } from '../store/store';
 import ApiInstance from '../services/api';
 import { useI18n } from 'vue-i18n';
+import { useUserStore } from '../store/modules/user';
 
-const {t, locale} = useI18n()
+const {t} = useI18n()
+
+const userStore = useUserStore()
 
     const inputValue = ref<string>("")
     const store = useStore()
@@ -36,26 +39,33 @@ const renderCategories =  async ( ) => {
     }
 }
 
+const langOptions = [
+  { label: 'English', value: 'en' },
+  { label: 'Русский', value: 'ru' },
+  { label: 'Oʻzbekcha', value: 'uz' }
+]
 
 onMounted(() => {
     renderCategories()
 })
 
+const language = ref(userStore.getLanguage())
 
-const changeLang = (event: Event | null) => {
-    locale.value = event.target.value
+const changeLang = (lang: string) => {
+    userStore.setLanguage(lang)
 }
    
 </script>
 
 <template>
     <nav v-if="showNavbar" class="container">
-        {{ $t('title') }}
-        <select @change="changeLang($event)" >
-            <option value="uz">UZ</option>
-            <option value="ru">RU</option>
-            <option value="en">EN</option>
-        </select>
+        {{ t('title') }}
+  
+        <n-select 
+         v-model:value="language"
+          :options="langOptions"
+          @update="changeLang"
+          />
         <router-link to="/" class="nav-logo">
             <img src="https://i.pinimg.com/736x/e6/98/2b/e6982b10ffccfe16a6e3fc9b6f7adadc.jpg" alt="">
         </router-link>
