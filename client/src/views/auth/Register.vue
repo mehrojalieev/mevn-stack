@@ -95,6 +95,6 @@ const handleRegister = async () => {
     <input v-model="password"  @focus="focusState.password = true"  @blur="focusState.password = false"  class="password-input"  :type="passwordType"  placeholder="Password"/>
     <i  @click="handlePasswordShow"  :class="passwordType === 'password' ? 'pi pi-eye' : 'pi pi-eye-slash'"  id="password-toggle"></i>
   </div>
-  <Button :loading="isLoading" text="Register" class="submit-btn" @click="handleRegister"/>
+  <Button :loading="isLoading" text="Register" class="submit-btn" @click="handleRegister" button-type="primary"/>
   <p  class="register-link">Already have an account?  <router-link to="/auth/login" class="link" >Login</router-link></p>
 </template>
