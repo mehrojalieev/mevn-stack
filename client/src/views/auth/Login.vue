@@ -60,6 +60,6 @@ const handlePasswordShow = () => {
     <input v-model="password"  @focus="focusState.password = true"  @blur="focusState.password = false"  class="password-input"  :type="passwordType"  placeholder="Password"/>
     <i  @click="handlePasswordShow"  :class="passwordType === 'password' ? 'pi pi-eye' : 'pi pi-eye-slash'"  id="password-toggle"></i>
   </div>
-  <Button :loading="isLoading" text="Log in" class="submit-btn" @click="handleLogin"/>
+  <Button :loading="isLoading" text="Log in" class="submit-btn" @click="handleLogin" button-type="primary"/>
   <p  class="register-link">Don't have an account?  <router-link to="/auth/register" class="link" > Register</router-link></p>
 </template>
