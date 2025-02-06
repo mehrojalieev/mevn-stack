@@ -5,6 +5,7 @@ const jwt = require('jsonwebtoken')
 
 
 exports.register = async (req, res) => {
+    
     const {error} = registerValidation.validate(req.body);
 
     if (error) return res.status(400).send({ message: error.details[0].message });
