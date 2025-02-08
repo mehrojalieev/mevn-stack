@@ -3,6 +3,7 @@ const { register, login, delete: deleteUser } = require('../controllers/authCont
 const router = express.Router()
 
 
+
 router.post('/register', register );
 router.post('/login', login)
 router.delete('/:id', deleteUser )
