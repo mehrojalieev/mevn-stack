@@ -53,11 +53,11 @@ const handlePasswordShow = () => {
     <h6 class="auth-subtitle">Please enter your details</h6>
     <div :style="focusState.email ? 'border: 1px solid var(--primary-success)' : 'border: 1px solid #BAC4D1'" class="input-item">
       <i class="pi pi-envelope"></i>
-      <input v-model="email" @focus="focusState.email = true" @blur="focusState.email = false"  type="email"  placeholder="Email"/>
+      <input v-model="email" @focus="focusState.email = true" @blur="focusState.email = false"  type="email"  name="email"  placeholder="Email"/>
     </div>
   <div :style="focusState.password ? 'border: 1px solid var(--primary-success)' : 'border: 1px solid #BAC4D1'" class="input-item password-item">
     <i class="pi pi-lock"></i>
-    <input v-model="password"  @focus="focusState.password = true"  @blur="focusState.password = false"  class="password-input"  :type="passwordType"  placeholder="Password"/>
+    <input v-model="password"  @focus="focusState.password = true"  @blur="focusState.password = false"  class="password-input" name="password"  :type="passwordType"  placeholder="Password"/>
     <i  @click="handlePasswordShow"  :class="passwordType === 'password' ? 'pi pi-eye' : 'pi pi-eye-slash'"  id="password-toggle"></i>
   </div>
   <Button :loading="isLoading" text="Log in" class="submit-btn" @click="handleLogin" button-type="primary"/>
