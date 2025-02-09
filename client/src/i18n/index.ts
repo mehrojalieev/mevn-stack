@@ -15,7 +15,6 @@ const i18n = createI18n({
     legacy: false
 })
 
-
 export const changeLocale = (language: string) => {
     i18n.global.locale.value = language
     setActiveLang(language)
