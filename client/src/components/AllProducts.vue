@@ -4,7 +4,6 @@ import ApiInstance from '../services/api';
 import ProductCard from '../utils/ProductCard.vue';
 import ProductSkeletonCard from '../utils/ProductSkeletonCard.vue';
 
-
 const AllProducts = ref<any[]>([])
 const isLoading = ref<boolean>(false)
    
