@@ -32,6 +32,8 @@
     "vuetify": "^3.7.0-beta.1"
   },
   "devDependencies": {
+    "@testing-library/vue": "^8.1.0",
+    "@types/testing-library__vue": "^5.0.0",
     "@vitejs/plugin-vue": "^5.2.1",
     "@vue/runtime-core": "^3.5.13",
     "@vue/test-utils": "^2.4.6",
