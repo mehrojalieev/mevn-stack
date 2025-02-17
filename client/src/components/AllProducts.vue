@@ -24,6 +24,8 @@ const handleRenderProducts = async () => {
 onMounted(() => {
     handleRenderProducts()
 })  
+
+
     
 </script>
 
