@@ -14,6 +14,7 @@ useNetworkStatus((status) => {
 </script>
 
 <template>
+    
     <n-notification-provider placement="top">
         <n-dialog-provider>
         <n-message-provider>
