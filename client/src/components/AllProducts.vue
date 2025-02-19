@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import {  onMounted, ref } from 'vue';
-import ApiInstance from '../services/api';
+
 import ProductCard from '../utils/ProductCard.vue';
 import ProductSkeletonCard from '../utils/ProductSkeletonCard.vue';
+import ApiInstance from '../services/api';
 
 const AllProducts = ref<any[]>([])
 const isLoading = ref<boolean>(false)

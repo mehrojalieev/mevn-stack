@@ -8,7 +8,10 @@ import { useStorage } from '../../hooks/useStorage';
 
 const router = useRouter();
 
-const [_, setToken ] = useStorage("token", "local")
+// const [_, setToken] = useStorage("token", "local")
+const storage = useStorage("token", "local");
+const setToken = storage[1]; 
+
 
 const focusState = ref<{ email: boolean; password: boolean }>({
   email: false,
