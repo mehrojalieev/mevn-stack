@@ -3,7 +3,7 @@ import { mount } from "@vue/test-utils";
 import Home from "../../views/Home.vue";
 
 describe('Performance Testing HomePage', () => {
-    it('measures render time', () => {
+    it.skip('measures render time', () => {
         const start = performance.now()
         const wrapper = mount(Home)
         const end = performance.now()

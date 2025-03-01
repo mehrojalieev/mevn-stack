@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { computed, onMounted, ref } from 'vue';
 import { useRoute } from 'vue-router';
-import VerifyRole from '../helpers/verify-role';
 import { useStore } from '../store/store';
 import ApiInstance from '../services/api';
 import { useI18n } from 'vue-i18n';
 import { useUserStore } from '../store/modules/user';
+import VerifyRole from '../helpers/verify-role';
 
 const { t } = useI18n()
 
@@ -14,11 +14,11 @@ const userStore = useUserStore()
 const inputValue = ref<string>("")
 const store = useStore()
 const route = useRoute()
-const token: string | null = localStorage.getItem("token") || null;
+const token: any = localStorage.getItem("token");
 const allCategories = ref<string[]>([])
 const isLoading = ref<boolean>(false)
 
-const userData: any = token && VerifyRole(token)
+const userData: any = token ? VerifyRole(token) : null
 
 const showNavbar = computed(() =>
     !["auth", "dashboard"].some(path => route.path.includes(path))
