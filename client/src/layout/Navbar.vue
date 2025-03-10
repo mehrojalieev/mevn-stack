@@ -19,12 +19,10 @@ const allCategories = ref<string[]>([])
 const isLoading = ref<boolean>(false)
 
 const userData: any = token ? VerifyRole(token) : null;
-
-
-
 const showNavbar = computed(() => {
-    return !["auth", "dashboard"].some(path => route.path.includes(path))
+    return !["auth", "dashboard"].some(path => route.path.includes(path));
 });
+
 
 
 const renderCategories = async () => {
