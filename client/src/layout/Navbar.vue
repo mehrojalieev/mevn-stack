@@ -18,11 +18,13 @@ const token: any = localStorage.getItem("token");
 const allCategories = ref<string[]>([])
 const isLoading = ref<boolean>(false)
 
-const userData: any = token ? VerifyRole(token) : null
+const userData: any = token ? VerifyRole(token) : null;
 
-const showNavbar = computed(() =>
-    !["auth", "dashboard"].some(path => route.path.includes(path))
-);
+
+
+const showNavbar = computed(() => {
+    return !["auth", "dashboard"].some(path => route.path.includes(path))
+});
 
 
 const renderCategories = async () => {
