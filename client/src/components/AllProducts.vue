@@ -1,4 +1,4 @@
-<!-- <script setup lang="ts">
+<script setup lang="ts">
 import {  onMounted, ref } from 'vue';
 
 import ProductCard from '../utils/ProductCard.vue';
@@ -26,14 +26,12 @@ onMounted(() => {
     handleRenderProducts()
 })  
 
- 
+
     
-</script> -->
+</script>
+
 
 <template>
-    <h2>All products</h2>
-</template>
-<!-- <template>
     <section class="products-wrapper container">
         <ProductSkeletonCard v-if="isLoading" v-for="index in 20" :key="index"/>
         <ProductCard v-for="(product, index) in AllProducts" :product="product" :key="index"/>
@@ -49,4 +47,4 @@ onMounted(() => {
         place-items: center;
         gap: 1.4rem 1.2rem;
     }
-</style> -->
+</style>
