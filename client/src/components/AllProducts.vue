@@ -36,7 +36,7 @@ onMounted(() => {
         <ProductSkeletonCard v-if="isLoading" v-for="index in 20" :key="index"/>
         <ProductCard v-for="(product, index) in AllProducts" :product="product" :key="index"/>
     </section>
-</template>
+</template> 
 
 <style lang="scss" scoped>
     .products-wrapper{
