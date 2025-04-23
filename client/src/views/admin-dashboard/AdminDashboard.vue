@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { RouterView } from 'vue-router';
-import Sidebar from '../../layout/Sidebar.vue';
+import Sidebar from './layout/Sidebar.vue';
 import DashboardNavbar from '../../components/admin-table/DashboardNavbar.vue';
 
 
@@ -14,7 +14,7 @@ import DashboardNavbar from '../../components/admin-table/DashboardNavbar.vue';
                 <div class="main__content-routes">
                     <RouterView/>
                 </div>
-        </div>
+        </div> 
     </div>
 </template>
 

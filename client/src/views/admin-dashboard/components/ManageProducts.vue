@@ -16,6 +16,7 @@ async function renderProducts ()  {
         try {
                 const response = await ApiInstance.get('/product/all')
                 allProduct.value = response.data
+                console.log(response.data)
 
                 response?.data?.forEach((product: any) => {
                 Object.keys(product).forEach((key) => {
@@ -38,12 +39,8 @@ renderProducts()
 </script>
 
 <template>
- <PageTable :type="'product'" :header-columns="Array.from(productKeys)"  :data="allProduct" >
-    <template #search>
-      
-    </template>
- </PageTable>
-</template>
+ <PageTable :type="'product'" :header-columns="Array.from(productKeys)"  :data="allProduct" />
+ </template>
 
 
 <style lang="scss" scoped>

@@ -18,7 +18,7 @@ useNetworkStatus((status) => {
     <n-notification-provider placement="top">
         <n-dialog-provider>
         <n-message-provider>
-            <NavbarHeader/>
+            <!-- <NavbarHeader/> -->
             <!-- <Navbar/> -->
             <RouterView/>
         </n-message-provider>
