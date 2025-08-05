@@ -4,6 +4,7 @@ import {  onMounted, ref } from 'vue';
 import ProductCard from '../utils/ProductCard.vue';
 import ProductSkeletonCard from '../utils/ProductSkeletonCard.vue';
 import ApiInstance from '../services/api';
+import { useProducts } from '../queries';
 
 const AllProducts = ref<any[]>([])
 const isLoading = ref<boolean>(false)
@@ -22,12 +23,13 @@ const handleRenderProducts = async () => {
     }
 }
 
+const { data, } = useProducts()
+
+console.log('data', data.value)
+
 onMounted(() => {
     handleRenderProducts()
 })  
-
-
-    
 </script>
 
 
@@ -46,5 +48,23 @@ onMounted(() => {
         grid-template-columns: repeat(5, 1fr);
         place-items: center;
         gap: 1.4rem 1.2rem;
+    }
+
+    @media only screen and (max-width:768px){
+        .products-wrapper{
+            grid-template-columns: repeat(4, 1fr);
+        gap: 1.2rem 1rem;
+        }
+    }
+    @media only screen and (max-width:568px){
+        .products-wrapper{
+            grid-template-columns: repeat(3, 1fr);
+        gap: 1rem .8rem;
+        }
+    }
+    @media only screen and (max-width:378px){
+        .products-wrapper{
+            grid-template-columns: repeat(2, 1fr);
+        }
     }
 </style>

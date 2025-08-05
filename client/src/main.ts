@@ -9,6 +9,7 @@ import 'primeicons/primeicons.css'
 import Toast from "vue-toastification"
 import "vue-toastification/dist/index.css";
 import piniaPluginPersistedState from "pinia-plugin-persistedstate"
+import { VueQueryPlugin } from '@tanstack/vue-query'
 
 
 const pinia = createPinia()
@@ -22,6 +23,7 @@ app.use(routes);
 app.use(Toast);
 app.use(naive)
 app.use(pinia)
+app.use(VueQueryPlugin)
 
 
 // Mount the app
